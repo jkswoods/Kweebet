@@ -1,0 +1,17 @@
+{
+  "Parent": "SFX_Attn_Quiet",
+  "AudioCategory": "AudioCat_SFX",
+  "Layers": [
+    {
+      "Files": [
+        "Sounds/Kweebet/CW_DuckQuack.ogg"
+      ],
+      "Volume": 0,
+      "Looping": false
+    }
+  ],
+  "Volume": -4,
+  "MaxInstance": 2,
+  "SpatialBlend": 1,
+  "MaxDistance": 16
+}

@@ -1,0 +1,19 @@
+{
+  "Model": "Items/Kweebet/Display/CW_Card25.blockymodel",
+  "Texture": "Items/Kweebet/Display/CW_Card25.png",
+  "MinScale": 1,
+  "MaxScale": 1,
+  "EyeHeight": 0,
+  "HitBox": {
+    "Min": {
+      "X": -1.6,
+      "Y": -1.6,
+      "Z": -1.6
+    },
+    "Max": {
+      "X": 1.6,
+      "Y": 1.6,
+      "Z": 1.6
+    }
+  }
+}

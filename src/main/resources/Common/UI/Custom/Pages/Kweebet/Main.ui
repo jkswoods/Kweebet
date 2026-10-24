@@ -1,0 +1,395 @@
+$C = "../../Common.ui";
+$S = "Styles.ui";
+Group #PageFrame { Anchor: (Full: 0); Background: #000000(0.01); HitTestVisible: true;
+ Group #ResultPanel { Anchor: (Width: 900, Height: 190); Visible: false; HitTestVisible: false; Background: #111d2b(0.94); Padding: (Full: 16);
+  Group #WinResult { Anchor: (Full: 0); LayoutMode: Top;
+   Label #WinTitle { Anchor: (Height: 92); Style: (FontSize: 72, TextColor: #ffe08d, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+   Label #WinDelta { Anchor: (Height: 64); Style: (FontSize: 44, TextColor: #ffe08d, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+  }
+  Group #LossResult { Anchor: (Full: 0); Visible: false; LayoutMode: Top;
+   Label #LossTitle { Anchor: (Height: 92); Style: (FontSize: 72, TextColor: #ff8677, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+   Label #LossDelta { Anchor: (Height: 64); Style: (FontSize: 44, TextColor: #ffb4a9, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+  }
+ }
+ Group #Metrics { Anchor: (Width: 1120, Height: 64, Bottom: 254);
+  Group { Anchor: (Left: 0, Width: 340, Height: 64); Background: #111d2b(0.96); Padding: (Full: 6); LayoutMode: Top;
+   Label { Anchor: (Height: 22); Text: "AVAILABLE TO BET"; Style: (FontSize: 17, TextColor: #becbbe, HorizontalAlignment: Center); }
+   Label #AvailableBet { Anchor: (Height: 30); Style: (FontSize: 24, TextColor: #fff5d4, RenderBold: true, HorizontalAlignment: Center); }
+  }
+  Group #PotentialPanel { Anchor: (Right: 0, Width: 340, Height: 64); Visible: false; Background: #17332d(0.96); Padding: (Full: 6); LayoutMode: Top;
+   Label { Anchor: (Height: 22); Text: "POTENTIAL WIN"; Style: (FontSize: 17, TextColor: #c7dace, HorizontalAlignment: Center); }
+   Label #PotentialWin { Anchor: (Height: 30); Style: (FontSize: 24, TextColor: #ffe08d, RenderBold: true, HorizontalAlignment: Center); }
+  }
+ }
+ Group #Root { Anchor: (Width: 1120, Height: 184, Bottom: 60); Padding: (Full: 16); Background: #111d2b(0.96); LayoutMode: Top;
+  Group { Anchor: (Height: 36); LayoutMode: Left;
+   Group { Anchor: (Width: 320); }
+   Label #Title { FlexWeight: 1; Style: (FontSize: 28, FontName: "Secondary", TextColor: #f5d68a, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+TextButton #RulesButton { Anchor: (Width: 110, Height: 36, Right: 10); Text: "Rules"; Style: $S.@QuietButton; }
+TextButton #ManageButton { Anchor: (Width: 128, Height: 36, Right: 10); Text: "Settings"; Style: $S.@QuietButton; }
+TextButton #Close { Anchor: (Width: 52, Height: 36, Right: 10); Text: "X"; Style: $S.@QuietButton; }
+
+  }
+  Group { FlexWeight: 1;
+   Group #PlayView { Anchor: (Full: 0); LayoutMode: Top;
+    Label #GameReadout { Anchor: (Height: 44); Style: (FontSize: 32, TextColor: #fff5d4, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+    Label #Round { Visible: false; Anchor: (Height: 0); Style: (FontSize: 19, TextColor: #d4debd, HorizontalAlignment: Center, VerticalAlignment: Center); }
+    Group #GameStage { FlexWeight: 1; Visible: false; Background: #152c3d;
+Group #DuckGame { Anchor: (Full: 0); Visible: false; Group #Lanes { Anchor: (Left: 52, Width: 1280, Top: 25); LayoutMode: Top;
+Group #Lane0 { Anchor: (Height: 128); LayoutMode: Left;
+ Label #Name { Anchor: (Width: 175); Text: "Open lane"; Style: (FontSize: 17, TextColor: #d5dfce, VerticalAlignment: Center); }
+ Group #Track { Anchor: (Width: 900, Height: 120); Background: (TexturePath: "Art/Water.png");
+  Group { Anchor: (Right: 12, Width: 4, Height: 120); Background: #ddc47a; }
+  Sprite #DuckLive { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; TexturePath: "Art/Duck0Swim.png"; Frame: (Width: 64, Height: 44, PerRow: 6, Count: 12); FramesPerSecond: 30; }
+  Group #DuckRest { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; Background: (TexturePath: "Duck0.png"); }
+ }
+ Label #Result { Anchor: (Width: 175, Left: 14); Style: (FontSize: 17, TextColor: #dfc987, VerticalAlignment: Center); }
+}
+Group #Lane1 { Anchor: (Height: 128); LayoutMode: Left;
+ Label #Name { Anchor: (Width: 175); Text: "Open lane"; Style: (FontSize: 17, TextColor: #d5dfce, VerticalAlignment: Center); }
+ Group #Track { Anchor: (Width: 900, Height: 120); Background: (TexturePath: "Art/Water.png");
+  Group { Anchor: (Right: 12, Width: 4, Height: 120); Background: #ddc47a; }
+  Sprite #DuckLive { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; TexturePath: "Art/Duck1Swim.png"; Frame: (Width: 64, Height: 44, PerRow: 6, Count: 12); FramesPerSecond: 30; }
+  Group #DuckRest { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; Background: (TexturePath: "Duck1.png"); }
+ }
+ Label #Result { Anchor: (Width: 175, Left: 14); Style: (FontSize: 17, TextColor: #dfc987, VerticalAlignment: Center); }
+}
+Group #Lane2 { Anchor: (Height: 128); LayoutMode: Left;
+ Label #Name { Anchor: (Width: 175); Text: "Open lane"; Style: (FontSize: 17, TextColor: #d5dfce, VerticalAlignment: Center); }
+ Group #Track { Anchor: (Width: 900, Height: 120); Background: (TexturePath: "Art/Water.png");
+  Group { Anchor: (Right: 12, Width: 4, Height: 120); Background: #ddc47a; }
+  Sprite #DuckLive { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; TexturePath: "Art/Duck2Swim.png"; Frame: (Width: 64, Height: 44, PerRow: 6, Count: 12); FramesPerSecond: 30; }
+  Group #DuckRest { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; Background: (TexturePath: "Duck2.png"); }
+ }
+ Label #Result { Anchor: (Width: 175, Left: 14); Style: (FontSize: 17, TextColor: #dfc987, VerticalAlignment: Center); }
+}
+Group #Lane3 { Anchor: (Height: 128); LayoutMode: Left;
+ Label #Name { Anchor: (Width: 175); Text: "Open lane"; Style: (FontSize: 17, TextColor: #d5dfce, VerticalAlignment: Center); }
+ Group #Track { Anchor: (Width: 900, Height: 120); Background: (TexturePath: "Art/Water.png");
+  Group { Anchor: (Right: 12, Width: 4, Height: 120); Background: #ddc47a; }
+  Sprite #DuckLive { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; TexturePath: "Art/Duck3Swim.png"; Frame: (Width: 64, Height: 44, PerRow: 6, Count: 12); FramesPerSecond: 30; }
+  Group #DuckRest { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; Background: (TexturePath: "Duck3.png"); }
+ }
+ Label #Result { Anchor: (Width: 175, Left: 14); Style: (FontSize: 17, TextColor: #dfc987, VerticalAlignment: Center); }
+}
+Group #Lane4 { Anchor: (Height: 128); LayoutMode: Left;
+ Label #Name { Anchor: (Width: 175); Text: "Open lane"; Style: (FontSize: 17, TextColor: #d5dfce, VerticalAlignment: Center); }
+ Group #Track { Anchor: (Width: 900, Height: 120); Background: (TexturePath: "Art/Water.png");
+  Group { Anchor: (Right: 12, Width: 4, Height: 120); Background: #ddc47a; }
+  Sprite #DuckLive { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; TexturePath: "Art/Duck4Swim.png"; Frame: (Width: 64, Height: 44, PerRow: 6, Count: 12); FramesPerSecond: 30; }
+  Group #DuckRest { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; Background: (TexturePath: "Duck4.png"); }
+ }
+ Label #Result { Anchor: (Width: 175, Left: 14); Style: (FontSize: 17, TextColor: #dfc987, VerticalAlignment: Center); }
+}
+Group #Lane5 { Anchor: (Height: 128); LayoutMode: Left;
+ Label #Name { Anchor: (Width: 175); Text: "Open lane"; Style: (FontSize: 17, TextColor: #d5dfce, VerticalAlignment: Center); }
+ Group #Track { Anchor: (Width: 900, Height: 120); Background: (TexturePath: "Art/Water.png");
+  Group { Anchor: (Right: 12, Width: 4, Height: 120); Background: #ddc47a; }
+  Sprite #DuckLive { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; TexturePath: "Art/Duck5Swim.png"; Frame: (Width: 64, Height: 44, PerRow: 6, Count: 12); FramesPerSecond: 30; }
+  Group #DuckRest { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; Background: (TexturePath: "Duck5.png"); }
+ }
+ Label #Result { Anchor: (Width: 175, Left: 14); Style: (FontSize: 17, TextColor: #dfc987, VerticalAlignment: Center); }
+}
+Group #Lane6 { Anchor: (Height: 128); LayoutMode: Left;
+ Label #Name { Anchor: (Width: 175); Text: "Open lane"; Style: (FontSize: 17, TextColor: #d5dfce, VerticalAlignment: Center); }
+ Group #Track { Anchor: (Width: 900, Height: 120); Background: (TexturePath: "Art/Water.png");
+  Group { Anchor: (Right: 12, Width: 4, Height: 120); Background: #ddc47a; }
+  Sprite #DuckLive { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; TexturePath: "Art/Duck6Swim.png"; Frame: (Width: 64, Height: 44, PerRow: 6, Count: 12); FramesPerSecond: 30; }
+  Group #DuckRest { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; Background: (TexturePath: "Duck6.png"); }
+ }
+ Label #Result { Anchor: (Width: 175, Left: 14); Style: (FontSize: 17, TextColor: #dfc987, VerticalAlignment: Center); }
+}
+Group #Lane7 { Anchor: (Height: 128); LayoutMode: Left;
+ Label #Name { Anchor: (Width: 175); Text: "Open lane"; Style: (FontSize: 17, TextColor: #d5dfce, VerticalAlignment: Center); }
+ Group #Track { Anchor: (Width: 900, Height: 120); Background: (TexturePath: "Art/Water.png");
+  Group { Anchor: (Right: 12, Width: 4, Height: 120); Background: #ddc47a; }
+  Sprite #DuckLive { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; TexturePath: "Art/Duck7Swim.png"; Frame: (Width: 64, Height: 44, PerRow: 6, Count: 12); FramesPerSecond: 30; }
+  Group #DuckRest { Anchor: (Width: 84, Height: 60, Top: 28); Visible: false; Background: (TexturePath: "Duck7.png"); }
+ }
+ Label #Result { Anchor: (Width: 175, Left: 14); Style: (FontSize: 17, TextColor: #dfc987, VerticalAlignment: Center); }
+}
+} }
+Group #BlackjackGame { Anchor: (Full: 0); Visible: false; Background: #10483f; LayoutMode: Top;
+ Label #DealerTotal { Anchor: (Height: 34); Text: "DEALER"; Style: (FontSize: 23, TextColor: #d6c084, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Group #DealerCards { Anchor: (Height: 228, Width: 1280, Left: 52); }
+ Label #Turn { Anchor: (Height: 34); Style: (FontSize: 21, TextColor: #cce0b7, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Label #MyTotal { Anchor: (Height: 34); Text: "YOUR HAND"; Style: (FontSize: 23, TextColor: #f1d88f, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Group #MyCards { Anchor: (Height: 228, Width: 1280, Left: 52); }
+ Group #OtherHands { FlexWeight: 1; LayoutMode: TopScrolling; ScrollbarStyle: $C.@DefaultScrollbarStyle; }
+}
+Group #CrashGame { Anchor: (Full: 0); Visible: false; LayoutMode: Top;
+ Label #Multiplier { Anchor: (Height: 125); Text: "1.00x"; Style: (FontSize: 100, TextColor: #d4eab8, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Group #Graph { Anchor: (Height: 300, Width: 1184, Left: 100); Background: #0b241f(0.72);
+Group { Anchor: (Left: 0, Right: 0, Top: 0, Height: 1); Background: #668071(0.18); }
+Group { Anchor: (Left: 0, Right: 0, Top: 60, Height: 1); Background: #668071(0.18); }
+Group { Anchor: (Left: 0, Right: 0, Top: 120, Height: 1); Background: #668071(0.18); }
+Group { Anchor: (Left: 0, Right: 0, Top: 180, Height: 1); Background: #668071(0.18); }
+Group { Anchor: (Left: 0, Right: 0, Top: 240, Height: 1); Background: #668071(0.18); }
+Group { Anchor: (Left: 0, Right: 0, Top: 300, Height: 1); Background: #668071(0.18); }
+Group #Bar0 { Anchor: (Left: 0, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar1 { Anchor: (Left: 37, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar2 { Anchor: (Left: 74, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar3 { Anchor: (Left: 111, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar4 { Anchor: (Left: 148, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar5 { Anchor: (Left: 185, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar6 { Anchor: (Left: 222, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar7 { Anchor: (Left: 259, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar8 { Anchor: (Left: 296, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar9 { Anchor: (Left: 333, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar10 { Anchor: (Left: 370, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar11 { Anchor: (Left: 407, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar12 { Anchor: (Left: 444, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar13 { Anchor: (Left: 481, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar14 { Anchor: (Left: 518, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar15 { Anchor: (Left: 555, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar16 { Anchor: (Left: 592, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar17 { Anchor: (Left: 629, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar18 { Anchor: (Left: 666, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar19 { Anchor: (Left: 703, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar20 { Anchor: (Left: 740, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar21 { Anchor: (Left: 777, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar22 { Anchor: (Left: 814, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar23 { Anchor: (Left: 851, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar24 { Anchor: (Left: 888, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar25 { Anchor: (Left: 925, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar26 { Anchor: (Left: 962, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar27 { Anchor: (Left: 999, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar28 { Anchor: (Left: 1036, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar29 { Anchor: (Left: 1073, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar30 { Anchor: (Left: 1110, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+Group #Bar31 { Anchor: (Left: 1147, Bottom: 0, Width: 36, Height: 1); Background: #99cf9c; }
+ Label #AxisTop { Anchor: (Left: 8, Top: 5, Height: 25, Width: 130); Style: (FontSize: 17, TextColor: #b7c5a8); }
+ Label { Anchor: (Left: 8, Bottom: 5, Height: 25, Width: 130); Text: "1.00x"; Style: (FontSize: 17, TextColor: #b7c5a8); }
+ }
+ Label #CurrentReturn { Anchor: (Height: 38); Style: (FontSize: 23, TextColor: #f0d58b, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Group #Wagers { FlexWeight: 1; LayoutMode: TopScrolling; ScrollbarStyle: $C.@DefaultScrollbarStyle; }
+}
+Group #PlinkoGame { Anchor: (Full: 0); Visible: false; Group #PegBoard { Anchor: (Left: 52, Top: 0, Width: 1280, Height: 640);
+Group { Anchor: (Left: 0, Top: 0, Width: 1280, Height: 560); Background: (TexturePath: "Art/PlinkoRails.png"); }
+Group { Anchor: (Left: 628, Top: 56, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 559, Top: 120, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 697, Top: 120, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 490, Top: 184, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 628, Top: 184, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 766, Top: 184, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 421, Top: 248, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 559, Top: 248, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 697, Top: 248, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 835, Top: 248, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 352, Top: 312, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 490, Top: 312, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 628, Top: 312, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 766, Top: 312, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 904, Top: 312, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 283, Top: 376, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 421, Top: 376, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 559, Top: 376, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 697, Top: 376, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 835, Top: 376, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 973, Top: 376, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 214, Top: 440, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 352, Top: 440, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 490, Top: 440, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 628, Top: 440, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 766, Top: 440, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 904, Top: 440, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 1042, Top: 440, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 145, Top: 504, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 283, Top: 504, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 421, Top: 504, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 559, Top: 504, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 697, Top: 504, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 835, Top: 504, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 973, Top: 504, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group { Anchor: (Left: 1111, Top: 504, Width: 24, Height: 28); Background: (TexturePath: "Art/Peg.png"); }
+Group #Bucket0 { Anchor: (Left: 24, Top: 550, Width: 128, Height: 82); Background: $S.@Bucket;
+ Label #Multiplier { Anchor: (Height: 29, Top: 26, Left: 4, Right: 4); Style: (FontSize: 23, TextColor: #f1d88f, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Label #Return { Anchor: (Bottom: 3, Height: 22, Left: 3, Right: 3); Style: (FontSize: 15, TextColor: #c9d2b6, HorizontalAlignment: Center, VerticalAlignment: Center); }
+}
+Group #Bucket1 { Anchor: (Left: 162, Top: 550, Width: 128, Height: 82); Background: $S.@Bucket;
+ Label #Multiplier { Anchor: (Height: 29, Top: 26, Left: 4, Right: 4); Style: (FontSize: 23, TextColor: #f1d88f, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Label #Return { Anchor: (Bottom: 3, Height: 22, Left: 3, Right: 3); Style: (FontSize: 15, TextColor: #c9d2b6, HorizontalAlignment: Center, VerticalAlignment: Center); }
+}
+Group #Bucket2 { Anchor: (Left: 300, Top: 550, Width: 128, Height: 82); Background: $S.@Bucket;
+ Label #Multiplier { Anchor: (Height: 29, Top: 26, Left: 4, Right: 4); Style: (FontSize: 23, TextColor: #f1d88f, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Label #Return { Anchor: (Bottom: 3, Height: 22, Left: 3, Right: 3); Style: (FontSize: 15, TextColor: #c9d2b6, HorizontalAlignment: Center, VerticalAlignment: Center); }
+}
+Group #Bucket3 { Anchor: (Left: 438, Top: 550, Width: 128, Height: 82); Background: $S.@Bucket;
+ Label #Multiplier { Anchor: (Height: 29, Top: 26, Left: 4, Right: 4); Style: (FontSize: 23, TextColor: #f1d88f, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Label #Return { Anchor: (Bottom: 3, Height: 22, Left: 3, Right: 3); Style: (FontSize: 15, TextColor: #c9d2b6, HorizontalAlignment: Center, VerticalAlignment: Center); }
+}
+Group #Bucket4 { Anchor: (Left: 576, Top: 550, Width: 128, Height: 82); Background: $S.@Bucket;
+ Label #Multiplier { Anchor: (Height: 29, Top: 26, Left: 4, Right: 4); Style: (FontSize: 23, TextColor: #f1d88f, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Label #Return { Anchor: (Bottom: 3, Height: 22, Left: 3, Right: 3); Style: (FontSize: 15, TextColor: #c9d2b6, HorizontalAlignment: Center, VerticalAlignment: Center); }
+}
+Group #Bucket5 { Anchor: (Left: 714, Top: 550, Width: 128, Height: 82); Background: $S.@Bucket;
+ Label #Multiplier { Anchor: (Height: 29, Top: 26, Left: 4, Right: 4); Style: (FontSize: 23, TextColor: #f1d88f, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Label #Return { Anchor: (Bottom: 3, Height: 22, Left: 3, Right: 3); Style: (FontSize: 15, TextColor: #c9d2b6, HorizontalAlignment: Center, VerticalAlignment: Center); }
+}
+Group #Bucket6 { Anchor: (Left: 852, Top: 550, Width: 128, Height: 82); Background: $S.@Bucket;
+ Label #Multiplier { Anchor: (Height: 29, Top: 26, Left: 4, Right: 4); Style: (FontSize: 23, TextColor: #f1d88f, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Label #Return { Anchor: (Bottom: 3, Height: 22, Left: 3, Right: 3); Style: (FontSize: 15, TextColor: #c9d2b6, HorizontalAlignment: Center, VerticalAlignment: Center); }
+}
+Group #Bucket7 { Anchor: (Left: 990, Top: 550, Width: 128, Height: 82); Background: $S.@Bucket;
+ Label #Multiplier { Anchor: (Height: 29, Top: 26, Left: 4, Right: 4); Style: (FontSize: 23, TextColor: #f1d88f, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Label #Return { Anchor: (Bottom: 3, Height: 22, Left: 3, Right: 3); Style: (FontSize: 15, TextColor: #c9d2b6, HorizontalAlignment: Center, VerticalAlignment: Center); }
+}
+Group #Bucket8 { Anchor: (Left: 1128, Top: 550, Width: 128, Height: 82); Background: $S.@Bucket;
+ Label #Multiplier { Anchor: (Height: 29, Top: 26, Left: 4, Right: 4); Style: (FontSize: 23, TextColor: #f1d88f, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+ Label #Return { Anchor: (Bottom: 3, Height: 22, Left: 3, Right: 3); Style: (FontSize: 15, TextColor: #c9d2b6, HorizontalAlignment: Center, VerticalAlignment: Center); }
+}
+Sprite #BallLive0 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; TexturePath: "Art/Ball0Spin.png"; Frame: (Width: 32, Height: 32, PerRow: 8, Count: 16); FramesPerSecond: 30; }
+Group #BallRest0 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; Background: (TexturePath: "Art/Ball0.png"); }
+Sprite #BallLive1 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; TexturePath: "Art/Ball1Spin.png"; Frame: (Width: 32, Height: 32, PerRow: 8, Count: 16); FramesPerSecond: 30; }
+Group #BallRest1 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; Background: (TexturePath: "Art/Ball1.png"); }
+Sprite #BallLive2 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; TexturePath: "Art/Ball2Spin.png"; Frame: (Width: 32, Height: 32, PerRow: 8, Count: 16); FramesPerSecond: 30; }
+Group #BallRest2 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; Background: (TexturePath: "Art/Ball2.png"); }
+Sprite #BallLive3 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; TexturePath: "Art/Ball3Spin.png"; Frame: (Width: 32, Height: 32, PerRow: 8, Count: 16); FramesPerSecond: 30; }
+Group #BallRest3 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; Background: (TexturePath: "Art/Ball3.png"); }
+Sprite #BallLive4 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; TexturePath: "Art/Ball4Spin.png"; Frame: (Width: 32, Height: 32, PerRow: 8, Count: 16); FramesPerSecond: 30; }
+Group #BallRest4 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; Background: (TexturePath: "Art/Ball4.png"); }
+Sprite #BallLive5 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; TexturePath: "Art/Ball5Spin.png"; Frame: (Width: 32, Height: 32, PerRow: 8, Count: 16); FramesPerSecond: 30; }
+Group #BallRest5 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; Background: (TexturePath: "Art/Ball5.png"); }
+Sprite #BallLive6 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; TexturePath: "Art/Ball6Spin.png"; Frame: (Width: 32, Height: 32, PerRow: 8, Count: 16); FramesPerSecond: 30; }
+Group #BallRest6 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; Background: (TexturePath: "Art/Ball6.png"); }
+Sprite #BallLive7 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; TexturePath: "Art/Ball7Spin.png"; Frame: (Width: 32, Height: 32, PerRow: 8, Count: 16); FramesPerSecond: 30; }
+Group #BallRest7 { Anchor: (Left: 624, Top: 6, Width: 32, Height: 32); Visible: false; Background: (TexturePath: "Art/Ball7.png"); }
+} }
+    }
+    Group #Footer { Anchor: (Height: 64); LayoutMode: Top;
+     Group { Anchor: (Height: 64);
+      Group #StakeActionBar { Anchor: (Width: 960, Height: 64); LayoutMode: Left;
+       Group #StakeControls { Anchor: (Width: 490, Height: 60); LayoutMode: Left;
+        Label { Anchor: (Width: 66, Height: 56); Text: "BET"; Style: (FontSize: 21, TextColor: #d5decf, RenderBold: true, VerticalAlignment: Center); }
+TextButton #Minus { Anchor: (Width: 56, Height: 56, Right: 10); Text: "-"; Style: $S.@QuietButton; }
+$C.@TextField #Stake { Anchor: (Width: 84, Height: 56, Right: 12); }
+TextButton #Plus { Anchor: (Width: 56, Height: 56, Right: 10); Text: "+"; Style: $S.@QuietButton; }
+
+        ItemIcon #PaymentIcon { Anchor: (Width: 48, Height: 48, Right: 10); HitTestVisible: false; }
+        Label #BetItem { Anchor: (Width: 135, Height: 56); Style: (FontSize: 20, TextColor: #e9e6d6, VerticalAlignment: Center, Wrap: true); }
+       }
+TextButton #Primary { Anchor: (Width: 450, Height: 58, Right: 10); Text: "Play 4"; Style: $S.@GoldButton; }
+
+      }
+      Group #CardsActions { Anchor: (Width: 960, Height: 64); Visible: false; LayoutMode: Left;
+TextButton #Hit { Anchor: (Width: 300, Height: 58, Right: 10); Text: "Hit · draw"; Style: $S.@GoldButton; }
+TextButton #Stand { Anchor: (Width: 300, Height: 58, Right: 10); Text: "Stand · keep"; Style: $S.@QuietButton; }
+TextButton #Double { Anchor: (Width: 300, Height: 58, Right: 10); Text: "Double bet"; Style: $S.@QuietButton; }
+
+      }
+     }
+     Label #Wallet { Visible: false; Anchor: (Height: 0); Style: (FontSize: 19, TextColor: #becbbe, HorizontalAlignment: Center, VerticalAlignment: Center); }
+     Label #Payout { Visible: false; Anchor: (Height: 0); Style: (FontSize: 19, TextColor: #d4d6b6, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true); }
+     Label #Notice { Visible: false; Anchor: (Height: 28); Style: (FontSize: 22, TextColor: #f1ca79, HorizontalAlignment: Center, VerticalAlignment: Center, Wrap: true); }
+    }
+    Group #AutoControls { Visible: false; Anchor: (Width: 0, Height: 0); LayoutMode: Left;
+     Label { Anchor: (Width: 730, Height: 30); Text: ""; Style: (FontSize: 17, TextColor: #becbbe, HorizontalAlignment: Center, VerticalAlignment: Center); }
+$C.@TextField #Auto { Anchor: (Width: 130, Height: 30, Right: 12); }
+
+    }
+   }
+   Group #ManageView { Anchor: (Left: 120, Right: 120, Top: 0, Bottom: 0); Visible: false; LayoutMode: Top;
+    Group { FlexWeight: 1; LayoutMode: Top;
+Label #FundingTitle { Anchor: (Height: 66); Text: "RECOVER STORED ITEMS"; Style: (FontSize: 34, TextColor: #f0d58b, VerticalAlignment: Center, Wrap: true);  }
+Group { Anchor: (Height: 82); LayoutMode: Left;
+ ItemIcon #StockIcon { Anchor: (Width: 72, Height: 72, Right: 22); HitTestVisible: false; }
+TextButton #ChooseStock { Anchor: (Width: 600, Height: 64, Right: 10); Text: "Iron ingots"; Style: $S.@QuietButton; }
+}
+Label #StockBalance { Anchor: (Height: 90); Text: ""; Style: (FontSize: 48, TextColor: #f1d88f, VerticalAlignment: Center, Wrap: true);  }
+Label #StockWallet { Anchor: (Height: 42); Text: ""; Style: (FontSize: 25, TextColor: #e8dec1, VerticalAlignment: Center, Wrap: true);  }
+Label #FundingHint { Anchor: (Height: 64); Text: ""; Style: (FontSize: 22, TextColor: #c4d7b6, VerticalAlignment: Center, Wrap: true);  }
+Group { Anchor: (Height: 74); LayoutMode: Left;
+TextButton #StockMinus { Anchor: (Width: 64, Height: 58, Right: 10); Text: "-"; Style: $S.@QuietButton; }
+$C.@TextField #Amount { Anchor: (Width: 150, Height: 58, Right: 12); }
+TextButton #StockPlus { Anchor: (Width: 64, Height: 58, Right: 10); Text: "+"; Style: $S.@QuietButton; }
+Label #AmountLabel { Anchor: (Width: 300, Height: 58); Text: "Amount to move"; Style: (FontSize: 22, TextColor: #e8dec1, VerticalAlignment: Center); } }
+Group { Anchor: (Height: 80); LayoutMode: Left;
+TextButton #Deposit { Anchor: (Width: 1, Height: 1, Right: 10); Text: ""; Style: $S.@QuietButton; }
+TextButton #Withdraw { Anchor: (Width: 500, Height: 64, Right: 10); Text: "Take to my bag"; Style: $S.@GoldButton; }
+}
+Group { Anchor: (Height: 20); }
+Label #OwnerNotice { Anchor: (Height: 70); Text: ""; Style: (FontSize: 24, TextColor: #f1ca79, VerticalAlignment: Center, Wrap: true);  }
+
+    }
+    Group { Anchor: (Height: 64); LayoutMode: Left;
+TextButton #BackToPlay { Anchor: (Width: 310, Height: 56, Right: 10); Text: "Back to game"; Style: $S.@GoldButton; }
+TextButton #Settings { Anchor: (Width: 310, Height: 56, Right: 10); Text: "Game settings"; Style: $S.@QuietButton; }
+
+    }
+   }
+   Group #SettingsView { Anchor: (Left: 60, Right: 60, Top: 0, Bottom: 0); Visible: false; LayoutMode: Top;
+    Group { FlexWeight: 1; LayoutMode: TopScrolling; ScrollbarStyle: $C.@DefaultScrollbarStyle;
+Label #StakeItemLabel { Anchor: (Height: 30); Text: "Bet item"; Style: (FontSize: 22, TextColor: #e8dec1, VerticalAlignment: Center, Wrap: true);  }
+Group { Anchor: (Height: 78); LayoutMode: Left;
+ ItemIcon #StakeItemIcon { Anchor: (Width: 60, Height: 60, Right: 20); HitTestVisible: false; }
+TextButton #ChooseStake { Anchor: (Width: 640, Height: 60, Right: 10); Text: "Iron ingots"; Style: $S.@QuietButton; }
+}
+Group { Anchor: (Height: 30); LayoutMode: Left;
+ Label { Anchor: (Width: 230); Text: "Minimum bet"; Style: (FontSize: 21, TextColor: #e8dec1); }
+ Label { Anchor: (Width: 230); Text: "Maximum bet"; Style: (FontSize: 21, TextColor: #e8dec1); }
+}
+Group { Anchor: (Height: 64); LayoutMode: Left;
+$C.@TextField #Min { Anchor: (Width: 210, Height: 50, Right: 12); }
+$C.@TextField #Max { Anchor: (Width: 210, Height: 50, Right: 12); }
+TextButton #Configure { Anchor: (Width: 280, Height: 50, Right: 10); Text: "Save settings"; Style: $S.@GoldButton; }
+}
+Label #LimitsHint { Anchor: (Height: 42); Text: ""; Style: (FontSize: 19, TextColor: #b9c6ad, VerticalAlignment: Center, Wrap: true);  }
+Group #RetiredControls { Anchor: (Height: 0); Visible: false;
+ Label #OpenState { Anchor: (Height: 1); }
+TextButton #Accepting { Anchor: (Width: 1, Height: 1, Right: 10); Text: ""; Style: $S.@QuietButton; }
+
+ Group #BonusSettings { Visible: false; }
+Label #BonusHint { Anchor: (Height: 1); Text: ""; Style: (FontSize: 1, TextColor: #e8dec1, VerticalAlignment: Center, Wrap: true);  }
+TextButton #Bonus { Anchor: (Width: 1, Height: 1, Right: 10); Text: ""; Style: $S.@QuietButton; }
+
+ Group #RecoveryRow { Visible: false;
+TextButton #RecoverStored { Anchor: (Width: 1, Height: 1, Right: 10); Text: ""; Style: $S.@QuietButton; }
+TextButton #Access { Anchor: (Width: 1, Height: 1, Right: 10); Text: ""; Style: $S.@QuietButton; }
+}
+}
+Label #SettingsNotice { Anchor: (Height: 50); Text: ""; Style: (FontSize: 22, TextColor: #f1ca79, VerticalAlignment: Center, Wrap: true);  }
+
+Group #CompatibilityFields { Visible: false; Anchor: (Height: 0);
+Label #InstantHint { Anchor: (Height: 28); Text: "Play immediately. Returns are generated; no funding needed."; Style: (FontSize: 18, TextColor: #e8dec1, VerticalAlignment: Center, Wrap: true);  }
+$C.@TextField #Item { Anchor: (Width: 1, Height: 42, Right: 12); }
+$C.@TextField #BonusItem { Anchor: (Width: 1, Height: 42, Right: 12); }
+$C.@TextField #BonusAmount { Anchor: (Width: 1, Height: 42, Right: 12); }
+$C.@TextField #Target { Anchor: (Width: 1, Height: 42, Right: 12); }
+TextButton #ChooseBonus { Anchor: (Width: 1, Height: 1, Right: 10); Text: ""; Style: $S.@QuietButton; }
+TextButton #Invite { Anchor: (Width: 1, Height: 1, Right: 10); Text: ""; Style: $S.@QuietButton; }
+TextButton #Advanced { Anchor: (Width: 1, Height: 1, Right: 10); Text: ""; Style: $S.@QuietButton; }
+
+ ItemIcon #BonusIcon { Anchor: (Width: 1, Height: 1); HitTestVisible: false; }
+ Group #InviteSettings { Visible: false; }
+ Group #AdvancedSettings { Visible: false;
+TextButton #Cancel { Anchor: (Width: 1, Height: 1, Right: 10); Text: ""; Style: $S.@QuietButton; }
+Label #History { Anchor: (Height: 1); Text: ""; Style: (FontSize: 1, TextColor: #e8dec1, VerticalAlignment: Center, Wrap: true);  }
+}
+}
+
+    }
+TextButton #BackToStock { Anchor: (Width: 330, Height: 56, Right: 10); Text: "Back to game"; Style: $S.@GoldButton; }
+
+   }
+   Group #ItemsView { Anchor: (Left: 120, Right: 120, Top: 0, Bottom: 0); Visible: false; LayoutMode: Top;
+Label #ItemsTitle { Anchor: (Height: 70); Text: "CHOOSE ITEM"; Style: (FontSize: 32, TextColor: #f0d58b, VerticalAlignment: Center, Wrap: true);  }
+Label #ItemsHint { Anchor: (Height: 60); Text: "Pick an ordinary stackable item. Equipment and custom stacks cannot be wagered."; Style: (FontSize: 21, TextColor: #c4d7b6, VerticalAlignment: Center, Wrap: true);  }
+
+    Group #ItemChoices { FlexWeight: 1; LayoutMode: TopScrolling; ScrollbarStyle: $C.@DefaultScrollbarStyle; }
+TextButton #CloseItems { Anchor: (Width: 280, Height: 56, Right: 10); Text: "Back"; Style: $S.@GoldButton; }
+
+   }
+   Group #RulesView { Anchor: (Full: 0); Visible: false; LayoutMode: Top;
+Label #RulesTitle { Anchor: (Height: 64); Text: "HOW TO PLAY"; Style: (FontSize: 32, TextColor: #f0d58b, VerticalAlignment: Center, Wrap: true);  }
+
+    Label #RulesText { FlexWeight: 1; Style: (FontSize: 23, TextColor: #dedfc7, Wrap: true); }
+TextButton #CloseRules { Anchor: (Width: 260, Height: 52, Right: 10); Text: "Back to game"; Style: $S.@GoldButton; }
+
+   }
+  }
+  Group #HiddenFields { Visible: false;
+$C.@TextField #FundItem { Anchor: (Width: 20, Height: 20, Right: 12); }
+
+  }
+ }
+}

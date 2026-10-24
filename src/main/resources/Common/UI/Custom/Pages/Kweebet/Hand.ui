@@ -1,0 +1,8 @@
+Group { Anchor: (Height: 96, Bottom: 5); LayoutMode: Left;
+ Group { Anchor: (Width: 230); LayoutMode: Top;
+  Label #Name { Anchor: (Height: 32); Style: (FontSize: 19, TextColor: #e2d4a7, RenderBold: true); }
+  Label #Detail { FlexWeight: 1; Style: (FontSize: 16, TextColor: #c3d1b1, Wrap: true); }
+ }
+ Group #Cards { FlexWeight: 1; }
+ Label #Total { Anchor: (Width: 75); Style: (FontSize: 27, TextColor: #f0d58b, VerticalAlignment: Center); }
+}

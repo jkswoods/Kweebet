@@ -1,0 +1,3 @@
+Group { Anchor: (Width: 86, Height: 26); Background: #183546;
+ Label #Multiplier { Anchor: (Full: 2); Style: (FontSize: 17, TextColor: #e5cf95, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+}

@@ -1,0 +1,85 @@
+{
+  "Spawners": [
+    {
+      "SpawnerId": "CW_WinTrail",
+      "TotalSpawners": 1,
+      "SpawnRate": {
+        "Min": 1,
+        "Max": 1
+      },
+      "MaxConcurrent": 1,
+      "StartDelay": 0,
+      "PositionOffset": {
+        "X": -0.5,
+        "Y": 0,
+        "Z": 0
+      },
+      "InitialVelocity": {
+        "Speed": {
+          "Min": 2.5,
+          "Max": 2.5
+        },
+        "Pitch": {
+          "Min": 90,
+          "Max": 90
+        },
+        "Yaw": {
+          "Min": 0,
+          "Max": 0
+        }
+      }
+    },
+    {
+      "SpawnerId": "CW_WinBurst",
+      "StartDelay": 0.8,
+      "TotalSpawners": 1,
+      "PositionOffset": {
+        "X": -0.5,
+        "Y": 2,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "CW_WinTrail",
+      "TotalSpawners": 1,
+      "SpawnRate": {
+        "Min": 1,
+        "Max": 1
+      },
+      "MaxConcurrent": 1,
+      "StartDelay": 0.16,
+      "PositionOffset": {
+        "X": 0.5,
+        "Y": 0,
+        "Z": 0
+      },
+      "InitialVelocity": {
+        "Speed": {
+          "Min": 2.5,
+          "Max": 2.5
+        },
+        "Pitch": {
+          "Min": 90,
+          "Max": 90
+        },
+        "Yaw": {
+          "Min": 0,
+          "Max": 0
+        }
+      }
+    },
+    {
+      "SpawnerId": "CW_WinBurst",
+      "StartDelay": 0.9600000000000001,
+      "TotalSpawners": 1,
+      "PositionOffset": {
+        "X": 0.5,
+        "Y": 2,
+        "Z": 0
+      }
+    }
+  ],
+  "CullDistance": 32,
+  "BoundingRadius": 5,
+  "IsImportant": true
+}

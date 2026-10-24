@@ -1,0 +1,6 @@
+$S = "Styles.ui";
+Group { Anchor: (Height: 82); LayoutMode: Left;
+ ItemIcon #Icon { Anchor: (Width: 64, Height: 64, Right: 18); HitTestVisible: false; }
+ TextButton #Pick { Anchor: (Width: 640, Height: 64, Right: 20); Style: $S.@QuietButton; }
+ Label #Count { FlexWeight: 1; Style: (FontSize: 21, TextColor: #d4debd, VerticalAlignment: Center, Wrap: true); }
+}

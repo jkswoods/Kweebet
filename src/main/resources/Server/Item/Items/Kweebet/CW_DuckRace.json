@@ -1,0 +1,78 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.CW_DuckRace.name",
+    "Description": "server.items.CW_DuckRace.description"
+  },
+  "Icon": "Icons/ItemsGenerated/CW_DuckRace.png",
+  "Categories": [
+    "Furniture.Benches"
+  ],
+  "Recipe": {
+    "Input": [
+      {
+        "ItemId": "Ingredient_Bar_Iron",
+        "Quantity": 6
+      },
+      {
+        "ItemId": "Ingredient_Bar_Copper",
+        "Quantity": 4
+      },
+      {
+        "ResourceTypeId": "Wood_Trunk",
+        "Quantity": 10
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "CasinoWorkbench",
+        "Categories": [
+          "CW_Games"
+        ]
+      }
+    ],
+    "TimeSeconds": 4
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Kweebet/CW_DuckRace.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Kweebet/CW_Materials_v3.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "HitboxType": "CW_DuckRace",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Benches"
+      }
+    },
+    "BlockParticleSetId": "Wood",
+    "ParticleColor": "#7c4c2b",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "CW_Open"
+          }
+        ]
+      }
+    }
+  },
+  "PlayerAnimationsId": "Block",
+  "MaxStack": 1,
+  "ItemLevel": 1
+}

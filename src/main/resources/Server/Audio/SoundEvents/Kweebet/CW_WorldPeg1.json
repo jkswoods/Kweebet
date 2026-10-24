@@ -1,0 +1,17 @@
+{
+  "Parent": "SFX_Attn_Quiet",
+  "AudioCategory": "AudioCat_SFX",
+  "Layers": [
+    {
+      "Files": [
+        "Sounds/Kweebet/CW_PlinkoPlonk1.ogg"
+      ],
+      "Volume": 0,
+      "Looping": false
+    }
+  ],
+  "Volume": -2,
+  "MaxInstance": 6,
+  "SpatialBlend": 1,
+  "MaxDistance": 16
+}

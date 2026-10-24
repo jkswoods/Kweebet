@@ -1,0 +1,5 @@
+$C = "../../Common.ui";
+Group { Anchor: (Height: 34); LayoutMode: Left;
+ ItemIcon #Icon { Anchor: (Width: 30, Height: 30, Right: 8); HitTestVisible: false; }
+ $C.@SmallTertiaryTextButton #Collect { Anchor: (Width: 650, Height: 30); Text: "Collect owned claim"; }
+}

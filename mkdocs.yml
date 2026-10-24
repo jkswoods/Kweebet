@@ -1,0 +1,32 @@
+site_name: Kweebet
+site_description: Craft a table, put in some ingots, and play.
+site_url: https://jkswoods.github.io/Kweebet/
+repo_url: https://github.com/jkswoods/Kweebet
+repo_name: jkswoods/Kweebet
+edit_uri: edit/main/docs/
+use_directory_urls: true
+exclude_docs: |
+  test-checklist.md
+  world-games.md
+markdown_extensions:
+  - attr_list
+  - md_in_html
+theme:
+  name: readthedocs
+  logo: assets/brand/logo.png
+  highlightjs: false
+nav:
+  - Kweebet: index.md
+  - First session: first-steps.md
+  - Install and update: install-recovery.md
+  - Games and rules: games.md
+  - Plinko: plinko.md
+  - Recipes: recipes.md
+  - Game settings: funding.md
+  - Troubleshooting: troubleshooting.md
+  - Build from source: building.md
+plugins:
+  - search
+extra_css:
+  - assets/publication.css
+  - assets/kweebet.css

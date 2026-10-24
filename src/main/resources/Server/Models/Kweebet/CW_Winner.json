@@ -1,0 +1,19 @@
+{
+  "Model": "Items/Kweebet/Display/CW_Winner.blockymodel",
+  "Texture": "Items/Kweebet/Display/CW_Winner.png",
+  "MinScale": 1,
+  "MaxScale": 1,
+  "EyeHeight": 0,
+  "HitBox": {
+    "Min": {
+      "X": -1.2,
+      "Y": -1.2,
+      "Z": -1.2
+    },
+    "Max": {
+      "X": 1.2,
+      "Y": 1.2,
+      "Z": 1.2
+    }
+  }
+}

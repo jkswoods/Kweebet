@@ -1,0 +1,8 @@
+Group { Anchor: (Height: 43); LayoutMode: Left;
+ Label #Name { Anchor: (Width: 170); Style: (FontSize: 14, TextColor: #d6dce0, VerticalAlignment: Center); }
+ Group { Anchor: (Width: 660, Height: 40); Background: #1d4956;
+  Group #Duck { Anchor: (Width: 38, Height: 30, Left: 0, Top: 5); }
+  Group { Anchor: (Width: 3, Height: 40, Right: 5); Background: #e5cf95; }
+ }
+ Label #Result { Anchor: (Width: 180, Left: 10); Style: (FontSize: 13, TextColor: #e5cf95, VerticalAlignment: Center, Wrap: true); }
+}

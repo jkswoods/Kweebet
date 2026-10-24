@@ -1,0 +1,27 @@
+@Panel = PatchStyle(TexturePath: "Art/Panel.png", Border: 64);
+@Gold = PatchStyle(TexturePath: "Art/Gold.png", Border: 14);
+@GoldHover = PatchStyle(TexturePath: "Art/GoldHover.png", Border: 14);
+@GoldPressed = PatchStyle(TexturePath: "Art/GoldPressed.png", Border: 14);
+@Disabled = PatchStyle(TexturePath: "Art/Disabled.png", Border: 14);
+@Bucket = PatchStyle(TexturePath: "Art/Bucket.png", Border: 12);
+@BucketWin = PatchStyle(TexturePath: "Art/BucketWin.png", Border: 12);
+@QuietHover = PatchStyle(TexturePath: "Art/QuietHover.png", Border: 12);
+@QuietPressed = PatchStyle(TexturePath: "Art/QuietPressed.png", Border: 12);
+@SuitS = (TexturePath: "Art/SuitS.png");
+@SuitH = (TexturePath: "Art/SuitH.png");
+@SuitD = (TexturePath: "Art/SuitD.png");
+@SuitC = (TexturePath: "Art/SuitC.png");
+@GoldLabel = LabelStyle(FontSize: 24, TextColor: #312313, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: false);
+@QuietLabel = LabelStyle(FontSize: 24, TextColor: #e8dec1, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, ShrinkTextToFit: false);
+@GoldButton = TextButtonStyle(
+ Default: (Background: #e8d36a, LabelStyle: @GoldLabel),
+ Hovered: (Background: #fff09b, LabelStyle: @GoldLabel),
+ Pressed: (Background: #c8b146, LabelStyle: @GoldLabel),
+ Disabled: (Background: @Disabled, LabelStyle: ( ...@GoldLabel, TextColor: #96a28c ))
+);
+@QuietButton = TextButtonStyle(
+ Default: (Background: #263e50, LabelStyle: @QuietLabel),
+ Hovered: (Background: #3e5e70, LabelStyle: @QuietLabel),
+ Pressed: (Background: #182c3b, LabelStyle: @QuietLabel),
+ Disabled: (Background: @Disabled, LabelStyle: ( ...@QuietLabel, TextColor: #738270 ))
+);

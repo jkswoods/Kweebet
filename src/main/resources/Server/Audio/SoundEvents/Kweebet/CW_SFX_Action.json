@@ -1,0 +1,17 @@
+{
+  "Parent": "SFX_Attn_Quiet",
+  "AudioCategory": "AudioCat_SFX",
+  "Layers": [
+    {
+      "Files": [
+        "Sounds/Kweebet/CW_Action.ogg"
+      ],
+      "Volume": 0,
+      "Looping": false
+    }
+  ],
+  "Volume": -6,
+  "MaxInstance": 2,
+  "SpatialBlend": 0,
+  "MaxDistance": 8
+}

@@ -1,0 +1,9 @@
+/* Kweebet's walnut, felt and gold identity. */
+:root{--pub-accent:#d4aa43;--pub-accent-ink:#10231e;--pub-link:#17615b}
+.wy-nav-side{background:#122523}.wy-side-nav-search{background:#183a33}
+.wy-side-nav-search>a img.logo{max-height:112px;width:auto;border-radius:12px;margin:0 auto 12px}
+.wy-menu-vertical a:hover{background:#21483e}.wy-menu-vertical li.current>a{border-right:3px solid var(--pub-accent)}
+.mod-lead{font-weight:600;color:#173d32}.rst-content img{border-radius:8px}
+
+.mod-actions>p{display:flex;flex-wrap:wrap;gap:12px;margin:0;width:100%}
+@media(max-width:768px){.mod-actions>p{gap:8px}}

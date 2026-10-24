@@ -1,0 +1,4 @@
+Group { Anchor: (Height: 34); LayoutMode: Left;
+ Label #Name { Anchor: (Width: 320); Style: (FontSize: 18, TextColor: #e2d4a7); }
+ Label #Detail { FlexWeight: 1; Style: (FontSize: 18, TextColor: #c3d1b1); }
+}

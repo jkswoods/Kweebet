@@ -1,0 +1,11 @@
+casino.games=Games
+items.CW_Workbench.name=Kweebet Workbench
+items.CW_Workbench.description=Craft Blackjack, Duck Race, Crash and Plinko machines.
+items.CW_DuckRace.name=Duck Race
+items.CW_DuckRace.description=Choose your item bet and play immediately.
+items.CW_Blackjack.name=Blackjack Table
+items.CW_Blackjack.description=Choose your item bet and play immediately.
+items.CW_Crash.name=Crash Console
+items.CW_Crash.description=Choose your item bet and play immediately.
+items.CW_Plinko.name=Plinko
+items.CW_Plinko.description=Choose your item bet and play immediately.

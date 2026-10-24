@@ -1,0 +1,7 @@
+Group { Anchor: (Width: 56, Height: 80);
+ Group #Back { Anchor: (Full: 0); Background: (TexturePath: "Art/CardBack.png", Border: 8); }
+ Group #Face { Anchor: (Full: 0); Background: (TexturePath: "Art/Card.png", Border: 8);
+  Label #Rank { Anchor: (Left: 8, Top: 5, Height: 29, Width: 44); Style: (FontSize: 23, TextColor: #263c37, RenderBold: true); }
+  Group #Suit { Anchor: (Width: 29, Height: 29, Left: 13, Bottom: 10); }
+ }
+}

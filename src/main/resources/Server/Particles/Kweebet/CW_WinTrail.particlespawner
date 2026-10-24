@@ -1,0 +1,91 @@
+{
+  "RenderMode": "BlendAdd",
+  "ParticleRotationInfluence": "Billboard",
+  "LinearFiltering": true,
+  "LightInfluence": 0,
+  "ParticleRotateWithSpawner": false,
+  "MaxConcurrentParticles": 28,
+  "SpawnBurst": false,
+  "SpawnRate": {
+    "Min": 24,
+    "Max": 24
+  },
+  "TotalParticles": {
+    "Min": 22,
+    "Max": 22
+  },
+  "ParticleLifeSpan": {
+    "Min": 0.12,
+    "Max": 0.25
+  },
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 0.05,
+      "Max": 0.2
+    },
+    "Pitch": {
+      "Min": 0,
+      "Max": 90
+    },
+    "Yaw": {
+      "Min": -180,
+      "Max": 180
+    }
+  },
+  "Attractors": [
+    {
+      "LinearAcceleration": {
+        "X": 0,
+        "Y": -2.2,
+        "Z": 0
+      }
+    }
+  ],
+  "Particle": {
+    "Texture": "Particles/Kweebet/CW_Spark.png",
+    "ScaleRatioConstraint": "OneToOne",
+    "UVOption": "None",
+    "InitialAnimationFrame": {
+      "Opacity": 1,
+      "Scale": {
+        "X": {
+          "Min": 0.09,
+          "Max": 0.09
+        },
+        "Y": {
+          "Min": 0.09,
+          "Max": 0.09
+        }
+      },
+      "Color": "#ffe08d",
+      "FrameIndex": {
+        "Min": 0,
+        "Max": 0
+      }
+    },
+    "Animation": {
+      "0": {
+        "Opacity": 1,
+        "Color": "#fff6ce"
+      },
+      "35": {
+        "Color": "#ffc463"
+      },
+      "100": {
+        "Opacity": 0,
+        "Scale": {
+          "X": {
+            "Min": 0.025,
+            "Max": 0.025
+          },
+          "Y": {
+            "Min": 0.025,
+            "Max": 0.025
+          }
+        }
+      }
+    },
+    "SoftParticles": "Disable"
+  },
+  "LifeSpan": 0.8
+}
