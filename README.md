@@ -1,6 +1,6 @@
 # Kweebet
 
-[Download](https://github.com/jkswoods/Kweebet/releases) · [Player guide](docs/index.md) · [Rules](docs/games.md) · [Report a problem](https://github.com/jkswoods/Kweebet/issues)
+[Download](https://github.com/jkswoods/Kweebet/releases) · [Player guide](https://jkswoods.github.io/Kweebet/) · [Rules](docs/games.md) · [Report a problem](https://github.com/jkswoods/Kweebet/issues)
 
 ![Kweebet: a yellow duck, Plinko board and green-felt game table](docs/assets/brand/banner.png)
 
