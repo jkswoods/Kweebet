@@ -6,6 +6,10 @@ The player who placed the machine owns its settings. Open the machine and choose
 - The minimum bet.
 - The maximum bet.
 
+![Plinko Settings with one item selector and minimum and maximum bet fields](assets/screenshots/game-settings.png)
+
+*Kweebet 0.1.0: choose the item and limits, then save.*
+
 Save the settings before starting a round. Accepted round terms stay locked while that round is active. Defaults are Iron ingots with a minimum of 4 and maximum of 64.
 
 Blackjack bets must be even so natural-blackjack returns are exact. Plinko bets use multiples of four. Duck Race and Crash use whole items. Equipment and stacks carrying unsupported custom metadata are refused.

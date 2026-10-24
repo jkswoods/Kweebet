@@ -15,6 +15,10 @@ Duck Race, Blackjack, Crash and Plinko play out on the machines in your world. A
 
 *Banner: promotional artwork.*
 
+![Duck Race and Plinko placed in the world](assets/screenshots/games-world.png)
+
+*Kweebet 0.1.0 in Hytale 0.7.4: follow the marked duck or watch a ball bounce through the Plinko board.*
+
 ## One straightforward loop
 
 Craft the Kweebet Workbench, make a machine, place it and press Use. Choose how many items to bet, then Race, Deal, Bet or Drop. Games start immediately and generate their own returns. No owner bankroll or lobby is needed.

@@ -8,6 +8,10 @@
 
 *Promotional illustration of the mod’s game machines.*
 
+![Duck Race with its PLAYER marker beside the Plinko board](docs/assets/screenshots/games-world.png)
+
+*Kweebet 0.1.0 in Hytale 0.7.4: the placed Duck Race and Plinko machines.*
+
 - **Duck Race:** your marked yellow duck races three server ducks. Win for a 4× total return.
 - **Blackjack:** readable table cards, Hit, Stand and Double against the dealer.
 - **Crash:** watch the multiplier rise and Take before it crashes. Cash-out is manual.

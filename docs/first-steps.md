@@ -4,7 +4,11 @@
 
 At the stock Workbench, open Crafting and make a **Kweebet Workbench** with **8 Iron ingots, 4 Copper ingots and 10 wood trunks**. Place it where there is room for your game machines.
 
-Use the new workbench and choose Games. Each machine costs **6 Iron, 4 Copper and 10 wood trunks**. [All recipes](recipes.md).
+![The Kweebet Workbench recipe at the stock crafting bench](assets/screenshots/workbench-crafting.png)
+
+*Native Kweebet 0.1.0 recipe: 8 Iron, 4 Copper and 10 wood trunks.*
+
+Use the new workbench to choose a game recipe. Each machine costs **6 Iron, 4 Copper and 10 wood trunks**. [All recipes](recipes.md).
 
 ## Place and open a game
 
