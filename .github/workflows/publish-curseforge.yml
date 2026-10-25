@@ -1,79 +1,99 @@
-name: Publish tested mod to CurseForge
+name: Publish mod release
+run-name: Publish ${{ github.ref_name }} · ${{ inputs.bump }} · ${{ inputs.release_type }}
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version bump for this Hytale support line
+        type: choice
+        options: [Patch, Minor, Major]
+        default: Patch
+        required: true
+      release_type:
+        description: CurseForge channel and GitHub release type
+        type: choice
+        options: [Release, Beta, Alpha]
+        default: Release
+        required: true
 
 permissions:
   contents: write
   actions: read
 
 concurrency:
-  group: curseforge-${{ github.event.release.tag_name }}
+  group: mod-release
   cancel-in-progress: false
 
 jobs:
   publish:
-    if: vars.ENABLE_CURSEFORGE_PUBLISH == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
+    env:
+      VERSION_BUMP: ${{ inputs.bump }}
+      RELEASE_TYPE: ${{ inputs.release_type }}
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ github.event.release.tag_name }}
+          ref: ${{ github.sha }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
-      - id: release
-        name: Read the selected candidate from the release notes
-        run: python tools/release_pipeline.py release-inputs
-      - name: Verify the candidate came from this support branch's successful build
+      - name: Check the release helper
+        run: python tools/test_release_dispatch.py
+      - id: plan
+        name: Validate destination and save this dispatch's version plan
         env:
           GH_TOKEN: ${{ github.token }}
-          BUILD_RUN: ${{ steps.release.outputs.run }}
-          BUILD_ATTEMPT: ${{ steps.release.outputs.attempt }}
-        run: |
-          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$BUILD_RUN/attempts/$BUILD_ATTEMPT" > candidate-run.json
-          python tools/release_pipeline.py check-run candidate-run.json
-      - uses: actions/download-artifact@v8
-        with:
-          name: candidate-${{ steps.release.outputs.commit }}-${{ steps.release.outputs.attempt }}
-          run-id: ${{ steps.release.outputs.run }}
-          github-token: ${{ github.token }}
-          path: candidate/
-      - name: Verify the accepted JAR, source commit, manifest and checksum
-        run: python tools/release_pipeline.py verify-candidate
-      - name: Attach the exact binary to GitHub before the store upload
-        env:
-          GH_TOKEN: ${{ github.token }}
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
-          MOD_FILE: ${{ steps.release.outputs.filename }}
-        # No --clobber: a rerun stops here if this binary is already attached.
-        # Inspect the store before reconciling any failed/unknown upload outcome.
-        run: gh release upload "$RELEASE_TAG" "candidate/$MOD_FILE" candidate/candidate.json
-      - name: Select CurseForge's minor tag and submit once
-        env:
           CURSEFORGE_API_TOKEN: ${{ secrets.CURSEFORGE_API_TOKEN }}
-          CURSEFORGE_API_BASE: ${{ vars.CURSEFORGE_API_BASE }}
+        run: python tools/release_dispatch.py prepare
+      - name: Retain the plan so a rerun cannot choose another version
+        if: steps.plan.outputs.new_plan == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-plan
+          path: .release/plan.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: ${{ steps.plan.outputs.java }}
+      - id: candidate
+        name: Restore the same binary when rerunning
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/release_dispatch.py candidate
+      - name: Fetch the pinned SDK and build/test once
+        if: steps.candidate.outputs.restored != 'true'
         shell: bash
         run: |
           set -euo pipefail
-          python tools/release_pipeline.py cf-request
-          test -n "$CURSEFORGE_API_TOKEN"
-          source cf-request.env
-          curl --fail --silent --show-error --max-time 60 --retry 0 \
-            --header "X-Api-Token: $CURSEFORGE_API_TOKEN" \
-            "$CF_BASE/api/game/versions" --output cf-versions.json
-          python tools/release_pipeline.py cf-metadata cf-versions.json
-          curl --fail --silent --show-error --max-time 180 --retry 0 \
-            --header "X-Api-Token: $CURSEFORGE_API_TOKEN" \
-            --form 'metadata=<cf-metadata.json' \
-            --form "file=@candidate/$CF_FILE;type=application/octet-stream" \
-            "$CF_BASE/api/projects/$CF_PROJECT/upload-file" --output cf-response.json
-          python tools/release_pipeline.py cf-receipt cf-response.json
-      - name: Retain the confirmed CurseForge file ID
+          sdk_path="$(bash tools/ci-fetch-sdk.sh)"
+          python tools/release_pipeline.py verify-sdk "$sdk_path"
+          HYTALE_SERVER_JAR="$sdk_path" bash tools/ci-build.sh
+          python tools/release_pipeline.py pack
+      - name: Retain the exact binary before publishing
+        if: steps.candidate.outputs.restored != 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-candidate
+          path: candidate/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Commit the version and publish the same binary to both destinations
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
-        run: gh release upload "$RELEASE_TAG" curseforge-upload.json
+          CURSEFORGE_API_TOKEN: ${{ secrets.CURSEFORGE_API_TOKEN }}
+        run: python tools/release_dispatch.py publish
+      - name: Preserve a confirmed file ID if GitHub finalization fails
+        if: failure() && hashFiles('curseforge-upload.json') != ''
+        uses: actions/upload-artifact@v7
+        with:
+          name: curseforge-confirmed-receipt
+          path: curseforge-upload.json
+          if-no-files-found: error
+          retention-days: 30

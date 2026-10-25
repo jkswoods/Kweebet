@@ -34,3 +34,8 @@ curseforge-upload.json
 !/tools/release_pipeline.py
 !/tools/ci-build.sh
 !/tools/ci-fetch-sdk.sh
+
+# Manual release run state
+/.release/
+!/tools/release_dispatch.py
+!/tools/test_release_dispatch.py

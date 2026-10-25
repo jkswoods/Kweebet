@@ -21,6 +21,13 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
+      - name: Check manual release behavior offline
+        run: python tools/test_release_dispatch.py
+      - name: Check the configured CurseForge catalog (read only)
+        if: github.event_name != 'pull_request'
+        env:
+          CURSEFORGE_API_TOKEN: ${{ secrets.CURSEFORGE_API_TOKEN }}
+        run: python tools/release_dispatch.py check-connection-if-configured
       - id: config
         run: python tools/release_pipeline.py config
       - uses: actions/setup-java@v6

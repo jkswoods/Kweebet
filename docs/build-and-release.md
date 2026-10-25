@@ -1,63 +1,75 @@
 # Building and releasing Kweebet
 
-The default support branch is `hytale0.7`, with no `main` branch.
-The mod version is `0.1.1`;
-its declared Hytale compatibility is `>=0.7.4 <0.8.0`. This range is the
-intended supported family, not a claim that every future patch has been tested.
-Compilation uses the pinned official Hytale 0.7.4 SDK and Java 25.
+The default branch is `hytale0.7`, with no `main` branch. The current mod version
+is `0.1.1` and its manifest declares `>=0.7.4 <0.8.0`.
+The family label does not certify every future game patch. Preserve required native,
+save, visual/listening and multiplayer acceptance before releasing selected source.
 
-`src/main/resources/manifest.json` is authoritative for the mod version and manifest constraint.
-`build-target.json` is authoritative for the exact SDK/Java pins. `release.json` references
-those files and defines artifact naming, the existing CurseForge project and channel.
-The build and uploader validate agreement; they do not widen support based on a store tag.
+## Build a candidate
 
-## Build
-
-From the repository root, set `JAVA_HOME` to a Java 25 JDK and `HYTALE_SERVER_JAR` to
-the official SDK with the checksum in `build-target.json`, then run:
+Use the pinned Java/SDK inputs in `build-target.json`. Set `JAVA_HOME` to
+the required JDK and `HYTALE_SERVER_JAR` to the matching SDK, then run:
 
 ```bash
 bash tools/ci-build.sh
 ```
 
-Alternatively, `bash tools/ci-fetch-sdk.sh` downloads the exact pinned official Maven
-coordinate and prints its path. `python3 tools/release_pipeline.py verify-sdk PATH`
-checks its SHA-256. Game/server binaries are external build inputs and are not bundled.
-The installable file is named `Kweebet-hytale0.7-0.1.1.jar`.
-Builds/tests do not install the mod or access a native client.
+`bash tools/ci-fetch-sdk.sh` downloads the exact pinned official Maven coordinate;
+`python3 tools/release_pipeline.py verify-sdk PATH` checks its checksum. Ordinary CI
+pushes and pull requests build/test candidates without publishing a mod release.
+Game binaries, live saves and private acceptance records stay outside the repository.
 
-## GitHub Actions and CurseForge
+## Publish manually
 
-Pushes and pull requests to `hytale0.7` build a candidate; only a successful push-build
-candidate for the exact release commit can be published. Download the candidate and
-complete the required gameplay, save, visual/listening and other release checks on
-that exact JAR before publishing any release. Preserve existing acceptance limits.
+Open **Actions → Publish mod release → Run workflow**:
 
-Use a tag such as `hytale0.7-v0.1.1` at the tested source commit.
-Copy the single `hytale-candidate` marker from its build summary into the release notes.
-The marker identifies the run, attempt and tested checksum; it does not certify native
-acceptance. The publish workflow downloads that candidate, verifies its source, SDK,
-manifest and checksum, attaches the same JAR to GitHub and submits those bytes to
-CurseForge with the `0.7` store tag. Set GitHub prerelease for Alpha/Beta channels.
+| Control | Choices | Default |
+|---|---|---|
+| Branch | GitHub's built-in selector; choose `hytale0.7` | Repository default |
+| Version bump | Patch, Minor, Major | Patch |
+| Release type | Release, Beta, Alpha | Release |
 
-Publishing remains disabled until the existing project ID in `release.json` is correct,
-`CURSEFORGE_API_TOKEN` is stored as an Actions secret, the verified game author-upload API
-origin is configured as `CURSEFORGE_API_BASE`, and `ENABLE_CURSEFORGE_PUBLISH=true` is
-set as a repository variable. Do not put tokens in source. Missing project IDs stay
-unresolved rather than creating a new listing. No mod release is published by this
-configuration change.
+A manual run is an instruction to publish that branch's selected source. The workflow
+checks the destination, computes the highest published numeric mod version for that
+Hytale family, applies the bump, stamps the manifest/channel and builds/tests once.
+For a family's first release, its current manifest version supplies the numeric base;
+legacy unqualified tags and other Hytale families do not change that base. Patch adds
+one patch; Minor resets patch to zero; Major resets minor and patch to zero.
 
-The store's `0.7` tag does not itself promise every 0.7 patch. State the precise range
-and any known exceptions in player release notes. Keep prior tags/downloads immutable;
-this source version is a new candidate, not a replacement for a prior published JAR.
+The workflow commits the version to the selected branch, creates a family-qualified
+tag and stages a draft GitHub release. It attaches the exact built JAR/checksum receipt,
+uploads those same bytes to CurseForge with the `0.7` game tag and chosen channel,
+then publishes GitHub after a confirmed CurseForge file ID. Alpha/Beta become GitHub
+prereleases. Release type does not add a suffix to the numeric version.
 
-An upload is attempted once. A rerun stops if the binary is already attached to the
-GitHub release. Inspect both GitHub and CurseForge before reconciling a failed or
-unknown submission; do not remove/reupload files or retry blindly. Retain the returned
-CurseForge file ID and distinguish submission/moderation from a public download.
+For example: tag `hytale0.7-v1.3.40`, title
+`Kweebet 1.3.40 — Hytale 0.7`, file `Kweebet-hytale0.7-1.3.40.jar`.
+Other Hytale families can independently release `1.3.40` under their own tags/titles.
+Stable backports do not replace the current default family's GitHub Latest release.
 
-When beginning a 0.8 port, create `hytale0.8` from the intended commit and update its
-SDK pin and manifest constraint. When adopting that support line, make it the GitHub
-default and align Pages source/environment rules and branch links. Retain `hytale0.7`
-for selected backports. Documentation deploys only from the default branch, preserving
-this repository's manual or automatic publication trigger.
+`src/main/resources/manifest.json` is authoritative for version/compatibility and
+`build-target.json` for SDK/Java pins. `release.json` references those
+sources and the existing CurseForge project. Publishing requires a real `projectId`
+and the repository Actions secret `CURSEFORGE_API_TOKEN`. No enable variable or custom
+API-host variable is needed. The API origin is `https://www.curseforge.com`, with the
+Hytale catalog at `/api/game/hytale/versions`. The `hytale.curseforge.com` landing site
+is not the author API. Trusted candidate builds check the token/catalog read-only;
+missing listings are reported without blocking candidate builds. Publishing refuses
+missing listings before changing remote versions. A catalog check does not prove
+upload permission or a successful store submission.
+
+## Retry and recovery
+
+Rerun the same workflow run to keep its saved version plan and binary. Do not start a
+fresh dispatch to retry a partial release. Existing tags/assets must match; no binary
+is overwritten. A confirmed CurseForge receipt lets GitHub finalization finish without
+another upload. A saved upload intent without a confirmed file ID stops: inspect the
+store before reconciling an unknown outcome. HTTP uploads are attempted once.
+
+The run's plan/candidate are retained for 30 days. Missing/expired state or an advanced
+source branch fails explicitly rather than selecting another version or new bytes.
+Submission may still await CurseForge moderation; a file ID is not proof of approval.
+
+When adopting `hytale0.8`, update SDK/compatibility, make it the GitHub default and
+align Pages rules/links. Keep workflow/helper fixes synchronized across every supported
+`hytaleX.Y` branch while preserving each branch's source, SDK and compatibility data.
