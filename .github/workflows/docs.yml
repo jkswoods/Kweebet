@@ -1,0 +1,58 @@
+name: Versioned player guides
+on:
+  push:
+    branches: [docs]
+  pull_request:
+    branches: [docs]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: versioned-guides-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Require the docs branch for manual publication
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          SELECTED_BRANCH: ${{ github.ref_name }}
+        run: |
+          if [ "$SELECTED_BRANCH" != docs ]; then
+            echo 'Select docs in the Run workflow branch selector.' >&2
+            exit 1
+          fi
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - run: npm run check
+      - uses: actions/upload-pages-artifact@v4
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && vars.DOCS_AUTO_DEPLOY == 'true')
+        with:
+          path: site
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && vars.DOCS_AUTO_DEPLOY == 'true')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - id: deployment
+        uses: actions/deploy-pages@v4

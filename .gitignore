@@ -1,0 +1,7 @@
+/node_modules
+site/
+.cache/
+.publication-policy.json
+__pycache__/
+*.pyc
+.DS_Store

@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Kweebet",
+    "path": "/",
+    "icon": "book-open"
+  },
+  {
+    "title": "First session",
+    "path": "/first-steps",
+    "icon": "rocket"
+  },
+  {
+    "title": "Install and update",
+    "path": "/install-recovery",
+    "icon": "download"
+  },
+  {
+    "title": "Games and rules",
+    "path": "/games",
+    "icon": "gamepad-2"
+  },
+  {
+    "title": "Plinko",
+    "path": "/plinko",
+    "icon": "gamepad-2"
+  },
+  {
+    "title": "Recipes",
+    "path": "/recipes",
+    "icon": "book-open"
+  },
+  {
+    "title": "Game settings",
+    "path": "/funding",
+    "icon": "settings"
+  },
+  {
+    "title": "Troubleshooting",
+    "path": "/troubleshooting",
+    "icon": "circle-help"
+  },
+  {
+    "title": "Build from source",
+    "path": "/building",
+    "icon": "code"
+  },
+  {
+    "title": "Build and releases",
+    "path": "/build-and-release",
+    "icon": "workflow"
+  }
+]

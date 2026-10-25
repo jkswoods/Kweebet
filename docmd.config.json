@@ -1,0 +1,83 @@
+{
+  "title": "Kweebet",
+  "url": "https://jkswoods.github.io/Kweebet/",
+  "base": "/Kweebet/",
+  "src": "docs",
+  "out": "site",
+  "engine": "js",
+  "versions": {
+    "current": "index",
+    "position": "sidebar-top",
+    "all": [
+      {
+        "id": "index",
+        "dir": "docs",
+        "label": "Choose Hytale version"
+      },
+      {
+        "id": "hytale0.7",
+        "dir": "versions/hytale0.7",
+        "label": "Hytale 0.7 (latest)"
+      }
+    ]
+  },
+  "theme": {
+    "appearance": "light",
+    "customCss": [
+      "/assets/publication.css",
+      "/assets/brand.css"
+    ]
+  },
+  "layout": {
+    "optionsMenu": {
+      "components": {
+        "themeSwitch": false,
+        "search": true
+      }
+    },
+    "spa": false
+  },
+  "plugins": {
+    "ai": {
+      "enabled": false,
+      "assistant": false
+    },
+    "analytics": false,
+    "search": {
+      "semantic": false
+    },
+    "git": {
+      "commitHistory": false,
+      "lastUpdated": false,
+      "editLink": false,
+      "branch": "docs"
+    },
+    "seo": {},
+    "sitemap": {}
+  },
+  "markdown": {
+    "breaks": false
+  },
+  "minify": false,
+  "logo": {
+    "light": "/assets/hytale0.7/brand/logo.png",
+    "dark": "/assets/hytale0.7/brand/logo.png",
+    "href": "/",
+    "alt": "Kweebet",
+    "height": "56px"
+  },
+  "security": {
+    "html": "allow"
+  },
+  "redirects": {
+    "/first-steps": "/Kweebet/hytale0.7/first-steps/",
+    "/recipes": "/Kweebet/hytale0.7/recipes/",
+    "/build-and-release": "/Kweebet/hytale0.7/build-and-release/",
+    "/troubleshooting": "/Kweebet/hytale0.7/troubleshooting/",
+    "/install-recovery": "/Kweebet/hytale0.7/install-recovery/",
+    "/funding": "/Kweebet/hytale0.7/funding/",
+    "/games": "/Kweebet/hytale0.7/games/",
+    "/building": "/Kweebet/hytale0.7/building/",
+    "/plinko": "/Kweebet/hytale0.7/plinko/"
+  }
+}

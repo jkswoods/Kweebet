@@ -1,0 +1,37 @@
+/* Shared Hytale guide layout for docmd. Keep mod branding in namespaced assets. */
+:root {
+ --font-family-sans: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ --bg-color:#fbfaf6; --text-color:#20323b; --text-heading:#17272d;
+ --text-muted:#53636b; --link-color:#245b6b; --link-color-hover:#173f49;
+ --sidebar-bg:#17272d; --sidebar-text:#edf2ef;
+ --sidebar-link-active-bg:#ffffff15; --sidebar-link-active-text:#fff;
+ --header-bg:#fbfaf6; --sidebar-width:280px; --pub-accent:#d3a43e;
+}
+.sidebar {color:#edf2ef;border-right:1px solid #ffffff22}
+.sidebar a,.sidebar .sidebar-title {color:#edf2ef}
+.sidebar .active {border-left:3px solid var(--pub-accent)}
+.sidebar-header img {max-width:210px;width:auto;max-height:72px;object-fit:contain}
+.main-content {max-width:82ch;line-height:1.7;font-size:16px}
+.main-content h1 {font-size:clamp(2rem,4vw,2.8rem);letter-spacing:-.025em;line-height:1.2}
+.main-content h2 {margin-top:2.5rem;padding-top:.6rem;border-top:1px solid #dce2e1}
+.main-content img {max-width:100%;height:auto;border-radius:8px}
+.main-content figure {margin:2rem 0}
+.main-content figcaption {font-size:.875rem;color:#53636b;margin-top:.7rem;line-height:1.55}
+.main-content .mod-lead {font-size:1.2rem;line-height:1.6;margin:1.5rem 0;color:#344d58}
+.mod-actions {display:flex;flex-wrap:wrap;gap:.7rem;margin:1.5rem 0}
+.main-content .mod-button {display:inline-block;padding:.7rem 1rem;background:#245b6b;color:white;border-radius:6px;font-weight:650;text-decoration:none}
+.main-content .mod-button-secondary {background:#e7eeeb;color:#20323b}
+.mod-status {padding:1rem 1.2rem;border-left:4px solid var(--pub-accent);background:#f1eee4;margin:1.5rem 0}
+.model-row {display:flex;align-items:center;flex-wrap:wrap;gap:1rem}
+.model-row img {max-width:calc(50% - 1rem)}
+.main-content table {display:block;max-width:100%;overflow-x:auto}
+.main-content :is(pre,code) {overflow-wrap:anywhere}
+@media(max-width:768px) {.main-content {max-width:100%}.content-area {padding:1.2rem}.model-row img {max-width:100%}}
+
+/* Keep menu state legible against the dark publication sidebar. */
+.sidebar a.active,.sidebar .active > a,.sidebar a[aria-current="page"] {color:#fff!important}
+.docmd-hero {margin:1rem 0 2rem!important;padding:2rem 0!important}
+
+@media(max-width:768px){.toc-container{background:#f1eee4!important;color:#20323b}.toc-title{color:#20323b!important}}
+
+@media(max-width:768px){.sidebar-header img{max-height:36px!important;height:36px!important;width:auto!important}}
