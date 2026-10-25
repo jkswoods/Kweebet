@@ -1,37 +1,73 @@
-/* Shared Hytale guide layout for docmd. Keep mod branding in namespaced assets. */
+/* Shared DocMD publication layout. Brand accents must pass contrast independently. */
 :root {
- --font-family-sans: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ --font-family-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
  --bg-color:#fbfaf6; --text-color:#20323b; --text-heading:#17272d;
  --text-muted:#53636b; --link-color:#245b6b; --link-color-hover:#173f49;
- --sidebar-bg:#17272d; --sidebar-text:#edf2ef;
- --sidebar-link-active-bg:#ffffff15; --sidebar-link-active-text:#fff;
+ --sidebar-bg:#f1eee4; --sidebar-text:#20323b;
+ --sidebar-link-active-bg:#e7eeeb; --sidebar-link-active-text:#17272d;
  --header-bg:#fbfaf6; --sidebar-width:280px; --pub-accent:#d3a43e;
 }
-.sidebar {color:#edf2ef;border-right:1px solid #ffffff22}
-.sidebar a,.sidebar .sidebar-title {color:#edf2ef}
-.sidebar .active {border-left:3px solid var(--pub-accent)}
-.sidebar-header img {max-width:210px;width:auto;max-height:72px;object-fit:contain}
-.main-content {max-width:82ch;line-height:1.7;font-size:16px}
-.main-content h1 {font-size:clamp(2rem,4vw,2.8rem);letter-spacing:-.025em;line-height:1.2}
-.main-content h2 {margin-top:2.5rem;padding-top:.6rem;border-top:1px solid #dce2e1}
-.main-content img {max-width:100%;height:auto;border-radius:8px}
-.main-content figure {margin:2rem 0}
-.main-content figcaption {font-size:.875rem;color:#53636b;margin-top:.7rem;line-height:1.55}
-.main-content .mod-lead {font-size:1.2rem;line-height:1.6;margin:1.5rem 0;color:#344d58}
-.mod-actions {display:flex;flex-wrap:wrap;gap:.7rem;margin:1.5rem 0}
-.main-content .mod-button {display:inline-block;padding:.7rem 1rem;background:#245b6b;color:white;border-radius:6px;font-weight:650;text-decoration:none}
-.main-content .mod-button-secondary {background:#e7eeeb;color:#20323b}
-.mod-status {padding:1rem 1.2rem;border-left:4px solid var(--pub-accent);background:#f1eee4;margin:1.5rem 0}
-.model-row {display:flex;align-items:center;flex-wrap:wrap;gap:1rem}
-.model-row img {max-width:calc(50% - 1rem)}
-.main-content table {display:block;max-width:100%;overflow-x:auto}
-.main-content :is(pre,code) {overflow-wrap:anywhere}
-@media(max-width:768px) {.main-content {max-width:100%}.content-area {padding:1.2rem}.model-row img {max-width:100%}}
-
-/* Keep menu state legible against the dark publication sidebar. */
-.sidebar a.active,.sidebar .active > a,.sidebar a[aria-current="page"] {color:#fff!important}
-.docmd-hero {margin:1rem 0 2rem!important;padding:2rem 0!important}
-
-@media(max-width:768px){.toc-container{background:#f1eee4!important;color:#20323b}.toc-title{color:#20323b!important}}
-
-@media(max-width:768px){.sidebar-header img{max-height:36px!important;height:36px!important;width:auto!important}}
+.sidebar{--sidebar-bg:#17272d;--sidebar-text:#edf2ef;--sidebar-link-active-bg:#314750;--sidebar-link-active-text:#fff;background:#17272d;color:#edf2ef;border-right:1px solid #53636b}
+.sidebar nav :is(a,.nav-label){color:#edf2ef}
+.sidebar nav :is(a,.nav-label):is(:hover,:focus-visible){color:#fff!important;background:#29434e}
+.sidebar nav a.active,.sidebar nav li.active-parent>a{color:#fff!important;background:#314750;font-weight:700}
+.sidebar nav a.active{border-left:3px solid #f4d270}
+.sidebar nav a.active::before,.sidebar nav li.active-parent>a::before{background:#f4d270}
+.sidebar nav .submenu{border-color:#a9bec5}
+.sidebar .version-dropdown-item{color:#20323b!important}
+.sidebar .version-dropdown-item:is(:hover,:focus-visible,.active){color:#17272d!important;background:#e7eeeb}
+.sidebar .version-dropdown-item.active{font-weight:700;border-left:3px solid #245b6b}
+.sidebar-header img{max-width:210px;width:auto;max-height:72px;object-fit:contain}
+.main-content{max-width:82ch;line-height:1.7;font-size:16px}
+.main-content h1{font-size:clamp(2rem,4vw,2.8rem);letter-spacing:-.025em;line-height:1.2}
+.main-content h2{margin-top:2.5rem;padding-top:.6rem;border-top:1px solid #dce2e1}
+.main-content img{max-width:100%;height:auto;border-radius:8px}
+.main-content figure{margin:2rem 0}
+.main-content figcaption{font-size:.875rem;color:#53636b;margin-top:.7rem;line-height:1.55}
+.main-content .mod-lead{font-size:1.2rem;line-height:1.6;margin:1.5rem 0;color:#344d58}
+.main-content a:not(.docmd-button):not(.mod-button){text-decoration:underline;text-underline-offset:.18em}
+.main-content a:not(.docmd-button):not(.mod-button):is(:hover,:focus-visible){text-decoration-thickness:2px}
+.mod-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.5rem 0}
+.main-content .mod-button{display:inline-block;padding:.7rem 1rem;background:#245b6b;color:#fff;border-radius:6px;font-weight:650;text-decoration:none}
+.main-content .mod-button-secondary{background:#e7eeeb;color:#20323b;border:1px solid #53636b}
+.main-content .mod-button:is(:hover,:focus-visible){background:#173f49;color:#fff}
+.main-content .mod-button-secondary:is(:hover,:focus-visible){background:#d1dfda;color:#17272d}
+a.docmd-button{color:#fff!important;background:var(--primary-color,var(--link-color))}
+a.docmd-button:is(:hover,:focus-visible){color:#fff!important;background:#173f49;filter:none}
+.mod-status{padding:1rem 1.2rem;border-left:4px solid var(--pub-accent);background:#f1eee4;margin:1.5rem 0;color:#20323b}
+.model-row{display:flex;align-items:center;flex-wrap:wrap;gap:1rem}
+.model-row img{max-width:calc(50% - 1rem)}
+.main-content table{display:block;max-width:100%;overflow-x:auto}
+.main-content :is(pre,code){overflow-wrap:anywhere}
+.docmd-hero{margin:1rem 0 2rem!important;padding:2rem 0!important}
+.toc-container{color:#20323b}
+.toc-list a:is(:hover,:focus-visible,.active){color:#17272d;background:#e7eeeb;text-decoration:underline}
+.page-footer{background:#f1eee4;color:#20323b}
+.page-footer a{color:#245b6b;text-decoration:underline}
+.search-result-item:is(:hover,:focus,.selected){background:#e7eeeb;border-left-color:#245b6b;color:#20323b}
+.search-result-item:is(:hover,:focus,.selected) .search-result-title{color:#173f49}
+.search-result-item:is(:hover,:focus,.selected) .search-result-preview{color:#344d58}
+.search-result-version,.search-result-confidence{color:#20323b!important;background:#e7eeeb!important}
+#docmd-search-input::placeholder{color:#53636b;opacity:1}
+:is(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #17272d!important;outline-offset:3px;box-shadow:0 0 0 3px #fff!important}
+.sidebar nav :is(a,[tabindex]):focus-visible{outline-color:#fff!important;box-shadow:0 0 0 3px #17272d!important}
+@media(max-width:1024px){.toc-container{background:#f1eee4!important;color:#20323b}.toc-title{color:#20323b!important}}
+@media(max-width:768px){.main-content{max-width:100%}.content-area{padding:1.2rem}.model-row img{max-width:100%}.sidebar-header img{max-height:36px!important;height:36px!important;width:auto!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media(forced-colors:active){:is(a,button,input,select,textarea,[tabindex]):focus-visible{outline-color:Highlight!important}.sidebar nav a.active{border-left-color:Highlight}}
+/* DocMD search generates inline palette/opacity values; keep every filter readable. */
+.search-filter-tag{color:#20323b!important;background:#e7eeeb!important;border:1px solid #53636b!important;opacity:1!important}
+.search-filter-tag:is(:hover,:focus-visible,.active){color:#fff!important;background:#245b6b!important;border-color:#245b6b!important;font-weight:700}
+.docmd-search-footer{background:#f1eee4;color:#344d58}
+.docmd-search-footer .docmd-kbd{color:#20323b;background:#fff;border:1px solid #53636b}
+/* The actual latest Hytale family is labelled explicitly; index is a chooser. */
+.version-latest-badge{display:none}
+.page-navigation small{opacity:1;color:#53636b}
+/* Readable syntax highlighting for small code/configuration examples. */
+.main-content .hljs,.main-content .hljs span{color:#20323b}
+.main-content .hljs :is(.hljs-comment,.hljs-quote){color:#53636b}
+.main-content .hljs :is(.hljs-string,.hljs-regexp,.hljs-addition){color:#276738}
+.main-content .hljs :is(.hljs-keyword,.hljs-literal,.hljs-number){color:#075d81}
+.main-content .hljs .hljs-title{color:#215b9c}
+.main-content .hljs :is(.hljs-attr,.hljs-attribute,.hljs-variable){color:#785813}
+.main-content .hljs :is(.hljs-built_in,.hljs-type){color:#653b83}
