@@ -1,6 +1,7 @@
 # Building and releasing Kweebet
 
-The current support branch is `hytale0.7`. The mod version is `0.1.1`;
+The default support branch is `hytale0.7`, with no `main` branch.
+The mod version is `0.1.1`;
 its declared Hytale compatibility is `>=0.7.4 <0.8.0`. This range is the
 intended supported family, not a claim that every future patch has been tested.
 Compilation uses the pinned official Hytale 0.7.4 SDK and Java 25.
@@ -40,7 +41,7 @@ manifest and checksum, attaches the same JAR to GitHub and submits those bytes t
 CurseForge with the `0.7` store tag. Set GitHub prerelease for Alpha/Beta channels.
 
 Publishing remains disabled until the existing project ID in `release.json` is correct,
-`CURSEFORGE_TOKEN` is stored as an Actions secret, the verified game author-upload API
+`CURSEFORGE_API_TOKEN` is stored as an Actions secret, the verified game author-upload API
 origin is configured as `CURSEFORGE_API_BASE`, and `ENABLE_CURSEFORGE_PUBLISH=true` is
 set as a repository variable. Do not put tokens in source. Missing project IDs stay
 unresolved rather than creating a new listing. No mod release is published by this
@@ -55,6 +56,8 @@ GitHub release. Inspect both GitHub and CurseForge before reconciling a failed o
 unknown submission; do not remove/reupload files or retry blindly. Retain the returned
 CurseForge file ID and distinguish submission/moderation from a public download.
 
-When beginning a 0.8 port, create `hytale0.8` from the intended commit, update its SDK
-pin and manifest constraint, and retain `hytale0.7` for selected backports. The default
-branch and existing documentation workflow remain in place.
+When beginning a 0.8 port, create `hytale0.8` from the intended commit and update its
+SDK pin and manifest constraint. When adopting that support line, make it the GitHub
+default and align Pages source/environment rules and branch links. Retain `hytale0.7`
+for selected backports. Documentation deploys only from the default branch, preserving
+this repository's manual or automatic publication trigger.

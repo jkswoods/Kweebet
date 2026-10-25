@@ -54,20 +54,20 @@ jobs:
         run: gh release upload "$RELEASE_TAG" "candidate/$MOD_FILE" candidate/candidate.json
       - name: Select CurseForge's minor tag and submit once
         env:
-          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          CURSEFORGE_API_TOKEN: ${{ secrets.CURSEFORGE_API_TOKEN }}
           CURSEFORGE_API_BASE: ${{ vars.CURSEFORGE_API_BASE }}
         shell: bash
         run: |
           set -euo pipefail
           python tools/release_pipeline.py cf-request
-          test -n "$CURSEFORGE_TOKEN"
+          test -n "$CURSEFORGE_API_TOKEN"
           source cf-request.env
           curl --fail --silent --show-error --max-time 60 --retry 0 \
-            --header "X-Api-Token: $CURSEFORGE_TOKEN" \
+            --header "X-Api-Token: $CURSEFORGE_API_TOKEN" \
             "$CF_BASE/api/game/versions" --output cf-versions.json
           python tools/release_pipeline.py cf-metadata cf-versions.json
           curl --fail --silent --show-error --max-time 180 --retry 0 \
-            --header "X-Api-Token: $CURSEFORGE_TOKEN" \
+            --header "X-Api-Token: $CURSEFORGE_API_TOKEN" \
             --form 'metadata=<cf-metadata.json' \
             --form "file=@candidate/$CF_FILE;type=application/octet-stream" \
             "$CF_BASE/api/projects/$CF_PROJECT/upload-file" --output cf-response.json

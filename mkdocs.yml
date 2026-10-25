@@ -3,7 +3,7 @@ site_description: Craft a table, put in some ingots, and play.
 site_url: https://jkswoods.github.io/Kweebet/
 repo_url: https://github.com/jkswoods/Kweebet
 repo_name: jkswoods/Kweebet
-edit_uri: edit/main/docs/
+edit_uri: edit/hytale0.7/docs/
 use_directory_urls: true
 exclude_docs: |
   test-checklist.md
