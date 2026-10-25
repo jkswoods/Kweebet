@@ -171,6 +171,50 @@ class Dispatch(unittest.TestCase):
             with self.assertRaises(ValueError):
                 release.release_check(self.release, self.config, plan)
 
+    def test_release_tag_push_leaves_the_protected_branch_unchanged(self):
+        def git(*args):
+            return subprocess.check_output(['git', *args], text=True, stderr=subprocess.PIPE).strip()
+        git('init', '-q')
+        git('symbolic-ref', 'HEAD', 'refs/heads/hytale0.7')
+        git('config', 'user.name', 'fixture')
+        git('config', 'user.email', 'fixture@users.noreply.github.com')
+        source_config = copy.deepcopy(self.config)
+        source_config['version'] = '1.3.40'
+        release.write('release.json', source_config)
+        git('add', 'release.json')
+        git('commit', '-qm', 'Reviewed source')
+        source = git('rev-parse', 'HEAD')
+        remote = Path.cwd() / 'origin.git'
+        git('init', '--bare', '-q', str(remote))
+        git('remote', 'add', 'origin', str(remote))
+        git('push', '-q', 'origin', 'hytale0.7')
+        hook = remote / 'hooks/pre-receive'
+        hook.write_text('#!/bin/sh\nwhile read old new ref; do\n  case "$ref" in refs/heads/hytale*) exit 1;; esac\ndone\n')
+        hook.chmod(0o755)
+        self.plan['source'] = source
+        with patch.dict(os.environ, {'GITHUB_SHA': source}):
+            release.stamp(self.plan)
+            self.plan['commit'] = git('rev-parse', 'HEAD')
+            release.write(release.PLAN, self.plan)
+            self.selected['commit'] = self.plan['commit']
+            release.write('candidate/candidate.json', self.selected | {'sdkSha256': self.config['sdkSha256']})
+            receipt = {'tag': self.plan['tag'], 'sha256': self.selected['sha256'], 'projectId': 123, 'fileId': 999}
+            def api(path, method='GET', body=None):
+                if '/git/ref/heads/' in path:
+                    return {'object': {'sha': source}}
+                if path.endswith('/generate-notes'):
+                    return {'body': 'Verified changes'}
+                if path.endswith('/releases') and method == 'POST':
+                    return self.release
+                if method == 'PATCH':
+                    return self.release | {'draft': False}
+                return {'default_branch': 'hytale0.7'}
+            with patch.object(release, 'rows', return_value=[]), patch.object(release, 'gh', side_effect=api), patch.object(release, 'attach'), patch.object(release, 'assets', return_value={'curseforge-upload.json': {'id': 78}}), patch.object(release, 'asset_bytes', return_value=json.dumps(receipt).encode()):
+                release.publish()
+        self.assertEqual(git('--git-dir', str(remote), 'rev-parse', 'refs/heads/hytale0.7'), source)
+        self.assertEqual(git('--git-dir', str(remote), 'rev-parse', 'refs/tags/' + self.plan['tag']), self.plan['commit'])
+        self.assertEqual(json.loads(git('show', self.plan['tag'] + ':release.json'))['version'], '1.3.41')
+
     def test_version_commit_is_deterministic_and_preserves_compatibility(self):
         def git(*args):
             return subprocess.check_output(['git', *args],text=True).strip()

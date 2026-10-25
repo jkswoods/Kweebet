@@ -84,7 +84,7 @@ jobs:
           path: candidate/
           if-no-files-found: error
           retention-days: 30
-      - name: Commit the version and publish the same binary to both destinations
+      - name: Tag the versioned source and publish the same binary to both destinations
         env:
           GH_TOKEN: ${{ github.token }}
           CURSEFORGE_API_TOKEN: ${{ secrets.CURSEFORGE_API_TOKEN }}

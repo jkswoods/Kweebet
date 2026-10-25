@@ -15,7 +15,7 @@ def toolchain():
     server=os.environ.get('HYTALE_SERVER_JAR') or private.get('server_path')
     java=os.environ.get('JAVA_HOME') or private.get('jdk_path')
     if not server or not java:
-        raise SystemExit('Set HYTALE_SERVER_JAR to your Hytale server JAR and JAVA_HOME to a Java 25 JDK. See docs/building.md.')
+        raise SystemExit('Set HYTALE_SERVER_JAR to your Hytale server JAR and JAVA_HOME to a Java 25 JDK. See https://jkswoods.github.io/Kweebet/hytale0.7/building/.')
     server,jdk=Path(server),Path(java)
     if not server.is_file() or not (jdk/'bin/javac').is_file():
         raise SystemExit('The supplied Hytale server JAR or Java compiler does not exist.')

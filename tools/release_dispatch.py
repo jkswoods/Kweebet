@@ -281,14 +281,15 @@ def publish():
         release_check(release, config, plan)
     else:
         remote = gh(api_root() + '/git/ref/heads/' + plan['branch'])['object']['sha']
-        require(remote in (plan['source'], plan['commit']), 'The support branch advanced after dispatch; start from its new source instead')
+        require(remote == plan['source'], 'The support branch advanced after dispatch; start from its new reviewed source instead')
         refs = run(['git', '-c', 'credential.helper=', '-c', 'credential.helper=!gh auth git-credential', 'ls-remote', 'origin', 'refs/tags/' + plan['tag']]).strip()
         if refs:
             require(refs.split()[0] == plan['commit'], 'Release tag already exists at another commit')
         else:
             run(['git', 'tag', plan['tag'], plan['commit']])
-        # One non-forced atomic push; another branch update causes a clean failure.
-        run(['git', '-c', 'credential.helper=', '-c', 'credential.helper=!gh auth git-credential', 'push', '--atomic', 'origin', plan['commit'] + ':refs/heads/' + plan['branch'], 'refs/tags/' + plan['tag']])
+        # Version/channel metadata lives in the tagged child commit. The reviewed
+        # support branch is never updated or given an Actions review bypass.
+        run(['git', '-c', 'credential.helper=', '-c', 'credential.helper=!gh auth git-credential', 'push', 'origin', 'refs/tags/' + plan['tag']])
         notes = f"{title(config)}\n\nHytale support: `{config['serverVersion']}`. Channel: {plan['channel']}.\n\n"
         if plan['previous']:
             generated = gh(api_root() + '/releases/generate-notes', 'POST', {'tag_name': plan['tag'], 'target_commitish': plan['commit'], 'previous_tag_name': plan['previous']})
