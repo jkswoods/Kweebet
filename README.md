@@ -10,7 +10,7 @@
 
 ![Duck Race with its PLAYER marker beside the Plinko board](docs/assets/screenshots/games-world.png)
 
-*Kweebet 0.1.0 in Hytale 0.7.4: the placed Duck Race and Plinko machines.*
+*Kweebet in Hytale 0.7.4: the placed Duck Race and Plinko machines.*
 
 - **Duck Race:** your marked yellow duck races three server ducks. Win for a 4× total return.
 - **Blackjack:** readable table cards, Hit, Stand and Double against the dealer.
@@ -20,7 +20,7 @@
 
 ## Start playing
 
-1. Install **Kweebet-0.1.0.jar** and enable **Kweebet** for your world.
+1. Install a Kweebet JAR marked compatible with your Hytale game version and enable **Kweebet** for your world.
 2. At a stock Workbench, craft a **Kweebet Workbench** with 8 Iron ingots, 4 Copper ingots and 10 wood trunks.
 3. Use it to craft a game machine: 6 Iron, 4 Copper and 10 wood trunks each.
 4. Place the machine, press Use, choose a bet and play immediately. No house stock or lobby countdown is required.
@@ -29,7 +29,7 @@
 
 ## Compatibility
 
-Version **0.1.0** targets **Hytale 0.7.4** and **Java 25**. This is the first public preview. Multiplayer spectator behaviour and broad server compatibility are still being evaluated; use a backed-up world and replaceable items. There is no real-money or external economy integration.
+This support line targets **Hytale 0.7** and **Java 25**. It remains a development preview. Multiplayer spectator behaviour and broad server compatibility are still being evaluated; use a backed-up world and replaceable items. There is no real-money or external economy integration.
 
 ## Build
 
@@ -54,3 +54,5 @@ Maintainers handle forward/back ports, and support-branch PRs require owner appr
 ## Documentation
 
 The [versioned player guide](https://jkswoods.github.io/Kweebet/) is maintained on the separate [`docs` branch](https://github.com/jkswoods/Kweebet/tree/docs). In that checkout, run `npm ci --ignore-scripts`, `npm run build` and `npm run check`. Select `docs` when manually dispatching its Pages workflow.
+
+The player guide follows the Hytale support line and is updated independently of mod releases. Select downloads by their game compatibility and read the selected file’s release notes for included changes and artifact checksums.
