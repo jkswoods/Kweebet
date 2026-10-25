@@ -21,3 +21,16 @@ __pycache__/
 /tools/*
 !/tools/build.py
 !/tools/test.py
+
+build/
+.cache/
+candidate/
+cf-*.json
+cf-request.env
+candidate-run.json
+curseforge-upload.json
+
+# Required versioning/build pipeline sources
+!/tools/release_pipeline.py
+!/tools/ci-build.sh
+!/tools/ci-fetch-sdk.sh

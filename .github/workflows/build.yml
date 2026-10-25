@@ -1,0 +1,44 @@
+name: Build mod candidate
+
+on:
+  push:
+    branches: ['hytale*']
+  pull_request:
+    branches: ['hytale*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - id: config
+        run: python tools/release_pipeline.py config
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: ${{ steps.config.outputs.java }}
+      - name: Obtain pinned SDK and run the mod's build and checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdk_path="$(bash tools/ci-fetch-sdk.sh)"
+          python tools/release_pipeline.py verify-sdk "$sdk_path"
+          HYTALE_SERVER_JAR="$sdk_path" bash tools/ci-build.sh
+      - name: Package candidate and record its checksum
+        run: python tools/release_pipeline.py pack
+      - uses: actions/upload-artifact@v7
+        with:
+          name: candidate-${{ github.sha }}-${{ github.run_attempt }}
+          path: candidate/
+          if-no-files-found: error
+          retention-days: 30

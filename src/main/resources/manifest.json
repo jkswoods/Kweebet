@@ -1,9 +1,9 @@
 {
   "Group": "Kweebet",
   "Name": "Kweebet",
-  "Version": "0.1.0",
+  "Version": "0.1.1",
   "Description": "Craft Blackjack, Duck Race, Crash and Plinko machines. Wager items and watch the games unfold in the world.",
-  "ServerVersion": "=0.7.4",
+  "ServerVersion": ">=0.7.4 <0.8.0",
   "Main": "dev.kweebet.KweebetPlugin",
   "IncludesAssetPack": true
 }

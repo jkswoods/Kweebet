@@ -1,0 +1,15 @@
+{
+  "modId": "Kweebet",
+  "hytaleFamily": "0.7",
+  "manifest": "src/main/resources/manifest.json",
+  "sdkTarget": {
+    "path": "build-target.json"
+  },
+  "artifact": "build/libs/{modId}-hytale{hytaleFamily}-{version}.jar",
+  "curseforge": {
+    "projectId": null,
+    "gameVersion": "0.7",
+    "releaseType": "release",
+    "manualRelease": false
+  }
+}

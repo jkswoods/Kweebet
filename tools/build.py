@@ -4,6 +4,7 @@ from pathlib import Path
 import hashlib,json,os,shutil,subprocess,zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
+from release_pipeline import config, filename
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -30,7 +31,7 @@ def main():
     sources=sorted((ROOT/'src/main/java').rglob('*.java'))
     subprocess.run([str(jdk/'bin/javac'),'--release','25','-Xlint:all','-cp',str(server),'-d',str(classes),*map(str,sources)],check=True)
     manifest=json.loads((ROOT/'src/main/resources/manifest.json').read_text())
-    out=ROOT/'build/libs'/('Kweebet-'+manifest['Version']+'.jar')
+    out=ROOT/'build/libs'/filename(config(ROOT/'release.json'))
     out.parent.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
         for folder in [classes,ROOT/'src/main/resources']:

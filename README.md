@@ -41,3 +41,7 @@ python3 tools/test.py
 ```
 
 See [building from source](docs/building.md). Proprietary Hytale binaries and assets are not redistributed. Source licensing and generated-asset notices are in [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Compatibility and builds
+
+Current source targets Hytale `>=0.7.4 <0.8.0` and uses the `hytale0.7` support branch. See [build and release instructions](docs/build-and-release.md) for the SDK pin, candidate checks, versioned filenames and CurseForge workflow.
