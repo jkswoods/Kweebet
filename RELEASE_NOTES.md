@@ -1,3 +1,5 @@
+Includes the mod logo in the world creation and world settings mod list.
+
 Craft a Kweebet Workbench and build four in-world item games: Duck Race, Blackjack, Crash and Plinko. Choose supported stackable items and limits in each machine’s Settings, then use its native controls to play. All wagers and returns are virtual in-game items; there is no real-money or external-economy integration.
 
 - Duck Race follows your marked yellow duck against three server ducks.
