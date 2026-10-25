@@ -4,8 +4,8 @@ title: "Building and releasing Kweebet"
 
 # Building and releasing Kweebet {#building-and-releasing-kweebet}
 
-The default branch is `hytale0.7`, with no `main` branch. The current mod version
-is `0.1.1` and its manifest declares `>=0.7.4 <0.8.0`.
+This guide follows the `hytale0.7` support branch. Its manifest declares `>=0.7.4 <0.8.0`.
+Mod release versions are calculated when publishing; this guide has its own docs lifecycle.
 The family label does not certify every future game patch. Preserve required native,
 save, visual/listening and multiplayer acceptance before releasing selected source.
 
@@ -47,9 +47,7 @@ uploads those same bytes to CurseForge with the `0.7` game tag and chosen channe
 then publishes GitHub after a confirmed CurseForge file ID. Alpha/Beta become GitHub
 prereleases. Release type does not add a suffix to the numeric version.
 
-For example: tag `hytale0.7-v1.3.40`, title
-`Kweebet 1.3.40 — Hytale 0.7`, file `Kweebet-hytale0.7-1.3.40.jar`.
-Other Hytale families can independently release `1.3.40` under their own tags/titles.
+Release tags use `hytale0.7-v<mod-semver>`; release titles and artifact filenames include both the Hytale family and the calculated mod version. Each Hytale family has its own mod-version sequence. Consult the selected release for its exact artifact name and checksum.
 Stable backports do not replace the current default family's GitHub Latest release.
 
 `src/main/resources/manifest.json` is authoritative for version/compatibility and
@@ -76,7 +74,7 @@ source branch fails explicitly rather than selecting another version or new byte
 Submission may still await CurseForge moderation; a file ID is not proof of approval.
 
 When adopting `hytale0.8`, update SDK/compatibility, make it the GitHub default and
-align Pages rules/links. Keep workflow/helper fixes synchronized across every supported
+add its guide to the docs version index; Pages continues to deploy from `docs`. Keep workflow/helper fixes synchronized across every supported
 `hytaleX.Y` branch while preserving each branch's source, SDK and compatibility data.
 
 Support-branch changes require your designated maintainer’s approval under the active

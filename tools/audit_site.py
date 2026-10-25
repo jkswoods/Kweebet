@@ -28,6 +28,22 @@ for version in versions:
     assert re.fullmatch(r'hytale\d+\.\d+', version)
     assert registry['families'][version]['sourceBranch'] == version
     assert (site / version / 'index.html').is_file(), 'Missing version guide: ' + version
+# A guide describes a game support line, independently of project releases.
+for family, record in registry['families'].items():
+    forbidden = {'modversion', 'releaseversion', 'releasetag', 'artifact', 'jar', 'sourcecommit'}
+    assert not forbidden.intersection(re.sub(r'[^a-z]', '', key.lower()) for key in record), 'Release-pinned guide registry: ' + family
+project = re.sub(r'[^a-z0-9]', '', config['title'].lower())
+source_pages = [Path('README.md'), *Path('docs').rglob('*.md'), *Path('versions').rglob('*.md')]
+for path in source_pages:
+    if not path.is_file(): continue
+    content = path.read_text()
+    for match in re.finditer(r'https://github\.com/[^/\s)]+/([^/\s)]+)/releases/(?:tag|download)/[^\s)]+', content):
+        assert re.sub(r'[^a-z0-9]', '', match[1].lower()) != project, 'Release-pinned download in ' + str(path)
+    for match in re.finditer(r'[A-Za-z][A-Za-z0-9_.<>-]*\.jar\b', content):
+        assert not re.sub(r'[^a-z0-9]', '', match[0].lower()).startswith(project), 'Project JAR pin in ' + str(path)
+    title_words = [re.escape(word) for word in re.findall(r'[A-Za-z0-9]+', config['title'])]
+    named_version = r'\s*'.join(title_words) + r'[\s*_`]+v?\d+\.\d+\.\d+'
+    assert not re.search(named_version, content, re.I), 'Project-version label in ' + str(path)
 pages = {}
 for path in site.rglob('*.html'):
     page = Page(); page.feed(path.read_text()); pages[path.resolve()] = page
@@ -51,4 +67,4 @@ for path in site.rglob('*'):
         data = path.read_bytes()
         assert not re.search(rb'/(?:Users|home)/[^/\s]+/|/private/tmp/', data), 'Local build path leaked: ' + str(path.relative_to(site))
 assert not errors, json.dumps(errors, indent=2)
-print(f"Verified {len(pages)} HTML pages across {len(versions)} Hytale families; links, assets and fragments resolve.")
+print(f"Verified {len(pages)} HTML pages across {len(versions)} Hytale families; links, assets and fragments resolve; guide release-pin checks pass.")

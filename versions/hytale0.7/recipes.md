@@ -16,7 +16,7 @@ Kweebet uses stock ingots and native wood-trunk ingredient categories. Oak trunk
 
 ![Four machine recipes at the Kweebet Workbench, with Blackjack selected](/assets/hytale0.7/screenshots/game-recipes.png)
 
-*Kweebet 0.1.0 native crafting: every game costs 6 Iron, 4 Copper and 10 wood trunks.*
+*Kweebet native crafting: every game costs 6 Iron, 4 Copper and 10 wood trunks.*
 
 One workbench and one of every game need **32 Iron, 20 Copper and 50 wood trunks** altogether. No fuel or power connection is required. Obtain the ordinary materials through Hytale's usual gathering and processing; Kweebet adds no ore or replacement currency.
 

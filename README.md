@@ -1,7 +1,7 @@
 # Kweebet versioned player guides
 
 The `docs` branch is the documentation source. [Read the published guides](https://jkswoods.github.io/Kweebet/).
-The mod's default remains its latest supported Hytale branch.
+The mod's default remains its latest supported Hytale branch. Guides follow that game family and are maintained independently of mod releases. Keep exact mod versions, JAR names, checksums and release history on the selected GitHub/CurseForge release. The registry records source branches and game compatibility only.
 
 Edit the affected `versions/hytaleX.Y/` pages and its `navigation.json`. Keep shared
 media isolated in `assets/hytaleX.Y/`; maintain `versions.json`, the root `docs/index.md`

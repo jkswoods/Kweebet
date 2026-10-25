@@ -4,9 +4,11 @@ title: "Install, update and remove"
 
 # Install, update and remove {#install-update-and-remove}
 
+This guide follows the **Hytale 0.7 support line**. Published files can lag behind branch changes; read the chosen file’s release notes for the features it includes.
+
 ## Install {#install}
 
-Kweebet **0.1.0** supports **Hytale 0.7.4 / Java 25**. Download `Kweebet-0.1.0.jar` from the [GitHub releases](https://github.com/jkswoods/Kweebet/releases).
+This guide covers Kweebet for **Hytale 0.7 / Java 25**. Choose a compatible file from [GitHub releases](https://github.com/jkswoods/Kweebet/releases), checking its exact Hytale patch requirements and release notes.
 
 1. Disconnect from the world and close Hytale before changing installed mods.
 2. Put the JAR in Hytale's `UserData/Mods` directory.

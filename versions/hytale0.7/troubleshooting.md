@@ -26,6 +26,6 @@ Close the table with Escape and reopen it. If Hytale's own menus also stop accep
 
 ## Preview limits {#preview-limits}
 
-Version 0.1.0 is an early public preview. Real second-client spectators and broad dedicated-server/provider compatibility are still being evaluated. Power-loss and partial-file rollback are not certified. Use replaceable items in a backed-up world.
+Kweebet remains a development preview. Real second-client spectators and broad dedicated-server/provider compatibility are still being evaluated. Power-loss and partial-file rollback are not certified. Use replaceable items in a backed-up world.
 
 [Report a problem](https://github.com/jkswoods/Kweebet/issues) with the mod version and reproduction steps. Remove account information, server addresses and private player data from screenshots or logs before posting.

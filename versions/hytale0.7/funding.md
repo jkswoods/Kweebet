@@ -12,7 +12,7 @@ The player who placed the machine owns its settings. Open the machine and choose
 
 ![Plinko Settings with one item selector and minimum and maximum bet fields](/assets/hytale0.7/screenshots/game-settings.png)
 
-*Kweebet 0.1.0: choose the item and limits, then save.*
+*Kweebet: choose the item and limits, then save.*
 
 Save the settings before starting a round. Accepted round terms stay locked while that round is active. Defaults are Iron ingots with a minimum of 4 and maximum of 64.
 

@@ -18,7 +18,7 @@ Returns include the committed bet. A 4-Iron drop returning 3 shows a net loss of
 
 ![Plinko showing a saved four-Iron result with one Iron returned and a net loss of three](/assets/hytale0.7/screenshots/plinko-controls.png)
 
-*Kweebet 0.1.0 native controls: the large signed result shows net change; the bucket line shows the total return.*
+*Kweebet native controls: the large signed result shows net change; the bucket line shows the total return.*
 
 The game generates its own returns; no house funding is required. A full bag keeps an owned reward until space is available. All 256 equally likely paths yield an expected total return of **1014/1024**, or **99.0234375%** of the stake. This is an average over many games, not a promise for an individual drop.
 

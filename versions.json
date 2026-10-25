@@ -3,8 +3,6 @@
   "families": {
     "hytale0.7": {
       "sourceBranch": "hytale0.7",
-      "sourceCommit": "c82b73e412dde5e90195f76b3439675d954be9a2",
-      "modVersion": "0.1.1",
       "serverVersion": ">=0.7.4 <0.8.0"
     }
   }

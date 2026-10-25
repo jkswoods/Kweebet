@@ -15,13 +15,13 @@ Duck Race, Blackjack, Crash and Plinko play out on the machines in your world. A
 <a class="mod-button mod-button-secondary" href="first-steps/">Your first game</a>
 </div>
 
-**0.1.0 public preview · Hytale 0.7.4 · Java 25**
+**Hytale 0.7 guide · Java 25 · Development preview**
 
 *Banner: promotional artwork.*
 
 ![Duck Race and Plinko placed in the world](/assets/hytale0.7/screenshots/games-world.png)
 
-*Kweebet 0.1.0 in Hytale 0.7.4: follow the marked duck or watch a ball bounce through the Plinko board.*
+*Kweebet in Hytale 0.7.4: follow the marked duck or watch a ball bounce through the Plinko board.*
 
 ## One straightforward loop {#one-straightforward-loop}
 

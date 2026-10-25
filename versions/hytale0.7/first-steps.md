@@ -10,7 +10,7 @@ At the stock Workbench, open Crafting and make a **Kweebet Workbench** with **8 
 
 ![The Kweebet Workbench recipe at the stock crafting bench](/assets/hytale0.7/screenshots/workbench-crafting.png)
 
-*Native Kweebet 0.1.0 recipe: 8 Iron, 4 Copper and 10 wood trunks.*
+*Native Kweebet recipe: 8 Iron, 4 Copper and 10 wood trunks.*
 
 Use the new workbench to choose a game recipe. Each machine costs **6 Iron, 4 Copper and 10 wood trunks**. [All recipes](recipes.md).
 

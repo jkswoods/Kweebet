@@ -13,7 +13,7 @@ python3 tools/build.py
 python3 tools/test.py
 ```
 
-The output is `build/libs/Kweebet-0.1.0.jar`. The build compiles the plugin, includes its original assets and recipes, and writes deterministic archive entries. Tests cover item accounting, saved outcomes and display-state geometry using JVM fixtures; they do not substitute for native gameplay or multiplayer observation.
+The build prints the mod JAR filename under `build/libs/`. The build compiles the plugin, includes its original assets and recipes, and writes deterministic archive entries. Tests cover item accounting, saved outcomes and display-state geometry using JVM fixtures; they do not substitute for native gameplay or multiplayer observation.
 
 ## Build the guide {#build-the-guide}
 
