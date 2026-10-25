@@ -25,6 +25,9 @@ def toolchain():
 
 def main():
     server,jdk,target=toolchain()
+    for notice in ['LICENSE','THIRD_PARTY_NOTICES.md']:
+        if (ROOT/notice).read_bytes() != (ROOT/'src/main/resources/META-INF'/notice).read_bytes():
+            raise SystemExit('Packaged '+notice+' must match the repository notice.')
     classes=ROOT/'build/classes'
     if classes.exists():shutil.rmtree(classes)
     classes.mkdir(parents=True)

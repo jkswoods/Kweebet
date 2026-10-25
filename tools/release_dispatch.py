@@ -99,6 +99,18 @@ def title(config):
     return f"{config.get('displayName', config['modId'])} {config['version']} — Hytale {config['hytaleFamily']}"
 
 
+def authored_notes(config):
+    name = config.get('releaseNotes')
+    if name is None:
+        return ''
+    path = Path(name)
+    require(not path.is_absolute() and '..' not in path.parts and path.resolve().is_relative_to(Path.cwd().resolve()), 'Release notes must stay inside the repository')
+    require(path.is_file() and path.stat().st_size <= 32768, 'Release notes must be an existing file of at most 32 KiB')
+    value = path.read_text(encoding='utf-8').strip()
+    require(value and '<!-- hytale-' not in value, 'Release notes must contain public player-facing text without internal markers')
+    return value + '\n\n'
+
+
 def fingerprint(config):
     keys = ('modId', 'hytaleFamily', 'serverVersion', 'sdkVersion', 'sdkSha256', 'javaVersion')
     value = {key: config[key] for key in keys}
@@ -194,6 +206,7 @@ def stamp(plan):
 
 def prepare():
     config = pipeline.config()
+    authored_notes(config)
     wanted = identity(config)
     require(wanted['channel'] in ('Release', 'Beta', 'Alpha'), 'Select Release, Beta or Alpha')
     STATE.mkdir(exist_ok=True)
@@ -270,6 +283,7 @@ def receipt_check(receipt, config, selected):
 
 def publish():
     config = pipeline.config()
+    public_notes = authored_notes(config)
     plan = check_plan(pipeline.read(PLAN), config)
     binary, selected = verify(config, plan)
     require(pipeline.commit() == plan['commit'], 'Release source commit changed')
@@ -290,7 +304,7 @@ def publish():
         # Version/channel metadata lives in the tagged child commit. The reviewed
         # support branch is never updated or given an Actions review bypass.
         run(['git', '-c', 'credential.helper=', '-c', 'credential.helper=!gh auth git-credential', 'push', 'origin', 'refs/tags/' + plan['tag']])
-        notes = f"{title(config)}\n\nHytale support: `{config['serverVersion']}`. Channel: {plan['channel']}.\n\n"
+        notes = f"{title(config)}\n\nHytale support: `{config['serverVersion']}`. Channel: {plan['channel']}.\n\n" + public_notes
         if plan['previous']:
             generated = gh(api_root() + '/releases/generate-notes', 'POST', {'tag_name': plan['tag'], 'target_commitish': plan['commit'], 'previous_tag_name': plan['previous']})
             notes += generated['body'] + '\n\n'

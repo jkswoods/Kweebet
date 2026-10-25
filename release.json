@@ -7,9 +7,11 @@
   },
   "artifact": "build/libs/{modId}-hytale{hytaleFamily}-{version}.jar",
   "curseforge": {
-    "projectId": null,
+    "projectId": 1764641,
     "gameVersion": "0.7",
     "releaseType": "release",
     "manualRelease": false
-  }
+  },
+  "displayName": "Kweebet",
+  "releaseNotes": "RELEASE_NOTES.md"
 }

@@ -98,6 +98,18 @@ class Dispatch(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'SHA-256'):
             release.verify(self.config, self.plan)
 
+    def test_authored_notes_preserve_player_limits_and_are_optional(self):
+        self.assertEqual(release.authored_notes(self.config), '')
+        Path('RELEASE_NOTES.md').write_text('## Known limits\n\nBack up the world before updating.\n')
+        config = self.config | {'releaseNotes': 'RELEASE_NOTES.md'}
+        self.assertIn('Back up the world', release.authored_notes(config))
+        for name in ['../private.md', str(Path.cwd() / 'RELEASE_NOTES.md'), 'missing.md']:
+            with self.subTest(name=name), self.assertRaises(ValueError):
+                release.authored_notes(config | {'releaseNotes': name})
+        Path('RELEASE_NOTES.md').write_text('<!-- hytale-dispatch private -->')
+        with self.assertRaises(ValueError):
+            release.authored_notes(config)
+
     def test_archive_paths_cannot_escape_destination(self):
         data = io.BytesIO()
         with zipfile.ZipFile(data, 'w') as archive:
